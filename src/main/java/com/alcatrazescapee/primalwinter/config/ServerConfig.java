@@ -8,6 +8,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.common.ModConfigSpec;
 
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -18,6 +19,7 @@ public final class ServerConfig {
     public static final ModConfigSpec.ConfigValue<List<? extends String>> WINTER_DIMENSIONS;
 
     private static Set<ResourceKey<Level>> winterDimensionsCache;
+    private static Set<ResourceKey<Level>> clientWinterDimensions;
     private static boolean frozen = false;
 
     public static final ModConfigSpec SPEC;
@@ -70,6 +72,10 @@ public final class ServerConfig {
     }
 
     public static Set<ResourceKey<Level>> winterDimensions() {
+        // On a client, use the values synced from the server via ConfigPacket (server configs are never loaded client-side)
+        if (clientWinterDimensions != null) {
+            return clientWinterDimensions;
+        }
         if (winterDimensionsCache == null) {
             winterDimensionsCache = parseAndFreeze();
         }
@@ -78,6 +84,14 @@ public final class ServerConfig {
 
     public static boolean isWinterDimension(ResourceKey<Level> dimension) {
         return winterDimensions().contains(dimension);
+    }
+
+    /**
+     * Client-only: stores the winter dimensions received in a {@link com.alcatrazescapee.primalwinter.util.ConfigPacket}
+     * from the server. Any subsequent {@link #isWinterDimension} checks use these synced values.
+     */
+    public static void onClientSync(Collection<ResourceKey<Level>> winterDimensions) {
+        clientWinterDimensions = ImmutableSet.copyOf(winterDimensions);
     }
 
     public static void onReload() {
