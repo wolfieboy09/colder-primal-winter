@@ -8,9 +8,11 @@ import com.alcatrazescapee.primalwinter.registries.PrimalWinterAmbience;
 import com.alcatrazescapee.primalwinter.registries.PrimalWinterBlocks;
 import com.alcatrazescapee.primalwinter.registries.PrimalWinterFeatures;
 import com.alcatrazescapee.primalwinter.registries.PrimalWinterItemGroups;
+import com.alcatrazescapee.primalwinter.util.WinterBiomes;
 import com.mojang.logging.LogUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.resources.ResourceLocation;
+import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModContainer;
@@ -19,6 +21,7 @@ import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.event.config.ModConfigEvent;
 import net.neoforged.fml.loading.FMLEnvironment;
+import net.neoforged.neoforge.event.server.ServerAboutToStartEvent;
 import org.slf4j.Logger;
 
 @Mod(PrimalWinter.MOD_ID)
@@ -51,5 +54,10 @@ public class PrimalWinter {
         if (FMLEnvironment.dist.isClient()) {
             ((ReloadableLevelRenderer) Minecraft.getInstance().levelRenderer).primalWinter$reload();
         }
+    }
+
+    @SubscribeEvent(priority = EventPriority.LOWEST)
+    public static void onServerAboutToStart(ServerAboutToStartEvent event) {
+        WinterBiomes.load(event.getServer());
     }
 }

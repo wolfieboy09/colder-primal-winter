@@ -28,6 +28,3 @@ side="BOTH"
 
 [[mixins]]
 config = "primalwinter.mixins.json"
-
-[[accessTransformers]]
-file="META-INF/accesstransformer.cfg"
