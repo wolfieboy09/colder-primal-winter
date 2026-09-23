@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/cube_bottom_top",
-  "textures": {
-    "bottom": "minecraft:block/white_terracotta",
-    "side": "primalwinter:block/snowy_white_terracotta",
-    "top": "minecraft:block/snow"
-  }
-}
