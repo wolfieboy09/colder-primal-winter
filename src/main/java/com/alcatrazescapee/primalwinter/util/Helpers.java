@@ -1,10 +1,8 @@
 package com.alcatrazescapee.primalwinter.util;
 
+import com.alcatrazescapee.primalwinter.PrimalWinter;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.properties.Property;
-
-import com.alcatrazescapee.primalwinter.PrimalWinter;
 
 public final class Helpers {
     public static ResourceLocation identifier(String name) {

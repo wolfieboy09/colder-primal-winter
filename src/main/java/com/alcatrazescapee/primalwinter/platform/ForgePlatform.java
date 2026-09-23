@@ -1,12 +1,13 @@
 package com.alcatrazescapee.primalwinter.platform;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import com.alcatrazescapee.primalwinter.util.Helpers;
 import net.minecraft.core.Registry;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.item.CreativeModeTab;
 import net.neoforged.neoforge.server.ServerLifecycleHooks;
+
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 
 public final class ForgePlatform implements XPlatform {
     public static void runBiomeModifiers(MinecraftServer server) {

@@ -1,7 +1,8 @@
 package com.alcatrazescapee.primalwinter.world;
 
-import java.util.function.BiConsumer;
-import java.util.function.Function;
+import com.alcatrazescapee.primalwinter.platform.RegistryHolder;
+import com.alcatrazescapee.primalwinter.platform.RegistryInterface;
+import com.alcatrazescapee.primalwinter.platform.XPlatform;
 import com.alcatrazescapee.primalwinter.util.Helpers;
 import com.mojang.serialization.Codec;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -17,9 +18,8 @@ import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfigur
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 
-import com.alcatrazescapee.primalwinter.platform.RegistryHolder;
-import com.alcatrazescapee.primalwinter.platform.RegistryInterface;
-import com.alcatrazescapee.primalwinter.platform.XPlatform;
+import java.util.function.BiConsumer;
+import java.util.function.Function;
 
 @SuppressWarnings("unused")
 public final class PrimalWinterFeatures {

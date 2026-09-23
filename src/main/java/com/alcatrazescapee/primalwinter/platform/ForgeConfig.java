@@ -1,8 +1,5 @@
 package com.alcatrazescapee.primalwinter.platform;
 
-import java.util.Collection;
-import java.util.List;
-import java.util.Objects;
 import com.alcatrazescapee.primalwinter.PrimalWinter;
 import com.alcatrazescapee.primalwinter.util.ConfigPacket;
 import net.minecraft.core.registries.Registries;
@@ -12,6 +9,10 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.common.ModConfigSpec;
 import net.neoforged.neoforge.network.PacketDistributor;
+
+import java.util.Collection;
+import java.util.List;
+import java.util.Objects;
 
 public class ForgeConfig extends Config {
     public final ModConfigSpec common;

@@ -1,34 +1,23 @@
 package com.alcatrazescapee.primalwinter.blocks;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.function.Supplier;
+import com.alcatrazescapee.primalwinter.mixin.AxeItemAccessor;
+import com.alcatrazescapee.primalwinter.platform.RegistryHolder;
+import com.alcatrazescapee.primalwinter.platform.RegistryInterface;
+import com.alcatrazescapee.primalwinter.platform.XPlatform;
 import com.google.common.collect.ImmutableMap;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.util.ColorRGBA;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.CherryLeavesBlock;
-import net.minecraft.world.level.block.ColoredFallingBlock;
-import net.minecraft.world.level.block.DirtPathBlock;
-import net.minecraft.world.level.block.HugeMushroomBlock;
-import net.minecraft.world.level.block.LeavesBlock;
-import net.minecraft.world.level.block.MangroveRootsBlock;
-import net.minecraft.world.level.block.MudBlock;
-import net.minecraft.world.level.block.RotatedPillarBlock;
-import net.minecraft.world.level.block.SoundType;
-import net.minecraft.world.level.block.WaterlilyBlock;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.MapColor;
 
-import com.alcatrazescapee.primalwinter.mixin.AxeItemAccessor;
-import com.alcatrazescapee.primalwinter.platform.RegistryHolder;
-import com.alcatrazescapee.primalwinter.platform.RegistryInterface;
-import com.alcatrazescapee.primalwinter.platform.XPlatform;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.function.Supplier;
 
-import static net.minecraft.world.level.block.state.BlockBehaviour.Properties.*;
+import static net.minecraft.world.level.block.state.BlockBehaviour.Properties.ofFullCopy;
 
 public final class PrimalWinterBlocks {
     public static final RegistryInterface<Block> BLOCKS = XPlatform.INSTANCE.registryInterface(BuiltInRegistries.BLOCK);

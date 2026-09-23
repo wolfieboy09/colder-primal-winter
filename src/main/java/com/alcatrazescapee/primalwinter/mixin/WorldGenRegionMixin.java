@@ -1,6 +1,5 @@
 package com.alcatrazescapee.primalwinter.mixin;
 
-import java.util.function.Supplier;
 import com.alcatrazescapee.primalwinter.blocks.PrimalWinterBlocks;
 import com.alcatrazescapee.primalwinter.platform.XPlatform;
 import com.alcatrazescapee.primalwinter.util.Helpers;
@@ -13,6 +12,8 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
+
+import java.util.function.Supplier;
 
 @Mixin(WorldGenRegion.class)
 public abstract class WorldGenRegionMixin {

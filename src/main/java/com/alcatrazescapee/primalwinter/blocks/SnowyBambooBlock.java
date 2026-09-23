@@ -1,7 +1,6 @@
 package com.alcatrazescapee.primalwinter.blocks;
 
 import com.alcatrazescapee.primalwinter.util.PrimalWinterBlockTags;
-import javax.annotation.Nullable;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -15,6 +14,8 @@ import net.minecraft.world.level.block.BambooStalkBlock;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.FluidState;
+
+import javax.annotation.Nullable;
 
 public class SnowyBambooBlock extends BambooStalkBlock {
     public SnowyBambooBlock(Properties properties) {

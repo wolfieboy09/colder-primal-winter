@@ -1,12 +1,5 @@
 package com.alcatrazescapee.primalwinter.world;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.function.Supplier;
 import com.alcatrazescapee.primalwinter.blocks.PrimalWinterBlocks;
 import com.alcatrazescapee.primalwinter.platform.XPlatform;
 import com.alcatrazescapee.primalwinter.util.PrimalWinterBlockTags;
@@ -29,6 +22,9 @@ import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
+
+import java.util.*;
+import java.util.function.Supplier;
 
 
 public class ImprovedFreezeTopLayerFeature extends Feature<NoneFeatureConfiguration> {

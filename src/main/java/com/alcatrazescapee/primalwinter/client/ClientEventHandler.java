@@ -1,14 +1,8 @@
 package com.alcatrazescapee.primalwinter.client;
 
-import java.util.function.Supplier;
 import com.alcatrazescapee.primalwinter.blocks.PrimalWinterBlocks;
 import com.alcatrazescapee.primalwinter.platform.XPlatform;
-import com.alcatrazescapee.primalwinter.platform.client.BlockColorCallback;
-import com.alcatrazescapee.primalwinter.platform.client.FogColorCallback;
-import com.alcatrazescapee.primalwinter.platform.client.FogDensityCallback;
-import com.alcatrazescapee.primalwinter.platform.client.ItemColorCallback;
-import com.alcatrazescapee.primalwinter.platform.client.ParticleProviderCallback;
-import com.alcatrazescapee.primalwinter.platform.client.XPlatformClient;
+import com.alcatrazescapee.primalwinter.platform.client.*;
 import net.minecraft.Util;
 import net.minecraft.client.Camera;
 import net.minecraft.client.Minecraft;
@@ -24,6 +18,8 @@ import net.minecraft.world.level.LightLayer;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.FogType;
+
+import java.util.function.Supplier;
 
 public final class ClientEventHandler {
     private static float prevFogDensity = -1f;

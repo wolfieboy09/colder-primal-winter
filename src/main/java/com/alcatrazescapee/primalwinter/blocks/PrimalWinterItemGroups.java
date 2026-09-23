@@ -1,7 +1,5 @@
 package com.alcatrazescapee.primalwinter.blocks;
 
-import java.util.ArrayList;
-import java.util.List;
 import com.alcatrazescapee.primalwinter.platform.RegistryHolder;
 import com.alcatrazescapee.primalwinter.platform.RegistryInterface;
 import com.alcatrazescapee.primalwinter.platform.XPlatform;
@@ -10,6 +8,9 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.ItemLike;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @SuppressWarnings("unused")
 public final class PrimalWinterItemGroups {

@@ -1,6 +1,5 @@
 package com.alcatrazescapee.primalwinter;
 
-import java.util.function.Function;
 import com.alcatrazescapee.primalwinter.client.ClientEventHandler;
 import com.alcatrazescapee.primalwinter.platform.client.ParticleProviderCallback;
 import net.minecraft.client.particle.ParticleProvider;
@@ -14,6 +13,8 @@ import net.neoforged.neoforge.client.event.ViewportEvent;
 import net.neoforged.neoforge.client.gui.ConfigurationScreen;
 import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
 import net.neoforged.neoforge.common.NeoForge;
+
+import java.util.function.Function;
 
 public final class ForgePrimalWinterClient {
     public static void setupClient() {

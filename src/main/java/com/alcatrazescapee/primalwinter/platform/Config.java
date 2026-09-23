@@ -1,10 +1,5 @@
 package com.alcatrazescapee.primalwinter.platform;
 
-import java.util.Collection;
-import java.util.Set;
-import java.util.function.BooleanSupplier;
-import java.util.function.DoubleSupplier;
-import java.util.function.IntSupplier;
 import com.alcatrazescapee.primalwinter.client.ReloadableLevelRenderer;
 import com.alcatrazescapee.primalwinter.util.ConfigPacket;
 import com.google.common.collect.ImmutableSet;
@@ -16,8 +11,13 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.biome.Biome;
-import org.jetbrains.annotations.CheckReturnValue;
 import org.slf4j.Logger;
+
+import java.util.Collection;
+import java.util.Set;
+import java.util.function.BooleanSupplier;
+import java.util.function.DoubleSupplier;
+import java.util.function.IntSupplier;
 
 @SuppressWarnings("NotNullFieldNotInitialized") // Initialized by subclasses
 public abstract class Config {

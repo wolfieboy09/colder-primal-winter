@@ -1,9 +1,10 @@
 package com.alcatrazescapee.primalwinter.platform;
 
-import java.util.function.Consumer;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
+
+import java.util.function.Consumer;
 
 public interface NetworkSetupCallback {
     /**

@@ -1,15 +1,14 @@
 package com.alcatrazescapee.primalwinter.platform;
 
-import java.util.function.Supplier;
-
 import com.alcatrazescapee.primalwinter.ForgePrimalWinter;
+import com.alcatrazescapee.primalwinter.PrimalWinter;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
-
-import com.alcatrazescapee.primalwinter.PrimalWinter;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import org.jetbrains.annotations.VisibleForTesting;
+
+import java.util.function.Supplier;
 
 public final class ForgeRegistryInterface<T> implements RegistryInterface<T> {
     @VisibleForTesting public final DeferredRegister<T> deferred;

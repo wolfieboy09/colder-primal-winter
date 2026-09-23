@@ -1,11 +1,10 @@
 package com.alcatrazescapee.primalwinter.util;
 
+import com.alcatrazescapee.primalwinter.PrimalWinter;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.saveddata.SavedData;
-
-import com.alcatrazescapee.primalwinter.PrimalWinter;
 
 public final class NewWorldSavedData extends SavedData {
     @SuppressWarnings("ConstantConditions") // In NF, the method is patched to allow null, in Fabric, they're a mixin

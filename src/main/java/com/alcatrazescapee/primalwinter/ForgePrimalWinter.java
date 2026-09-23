@@ -1,8 +1,5 @@
 package com.alcatrazescapee.primalwinter;
 
-import java.util.Objects;
-import java.util.function.Consumer;
-import java.util.function.Supplier;
 import com.alcatrazescapee.primalwinter.platform.ForgeConfig;
 import com.alcatrazescapee.primalwinter.platform.NetworkSetupCallback;
 import com.alcatrazescapee.primalwinter.platform.XPlatform;
@@ -41,6 +38,10 @@ import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
 import net.neoforged.neoforge.network.registration.PayloadRegistrar;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.neoforged.neoforge.registries.NeoForgeRegistries;
+
+import java.util.Objects;
+import java.util.function.Consumer;
+import java.util.function.Supplier;
 
 @Mod(PrimalWinter.MOD_ID)
 public final class ForgePrimalWinter {

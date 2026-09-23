@@ -1,8 +1,9 @@
 package com.alcatrazescapee.primalwinter.platform;
 
-import java.util.ServiceLoader;
 import net.minecraft.core.Registry;
 import net.minecraft.world.item.CreativeModeTab;
+
+import java.util.ServiceLoader;
 
 public interface XPlatform {
     XPlatform INSTANCE = find(XPlatform.class);
