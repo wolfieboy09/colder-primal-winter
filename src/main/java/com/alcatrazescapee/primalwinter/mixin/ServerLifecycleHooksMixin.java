@@ -13,8 +13,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(ServerLifecycleHooks.class)
-public class ServerLifecycleHooksMixin
-{
+public class ServerLifecycleHooksMixin {
     /**
      * @see Config#loadWinterBiomes(MinecraftServer)
      */
@@ -24,8 +23,7 @@ public class ServerLifecycleHooksMixin
         cancellable = true,
         remap = false
     )
-    private static void preventDoublePostingOfEvent(MinecraftServer server, CallbackInfo ci)
-    {
+    private static void preventDoublePostingOfEvent(MinecraftServer server, CallbackInfo ci) {
         NeoForge.EVENT_BUS.post(new ServerAboutToStartEvent(server)); // Event First (TerraBlender)
         XPlatform.INSTANCE.config().loadWinterBiomes(server); // Primal Winter second
         ForgePlatform.runBiomeModifiers(server); // Biome modifiers third

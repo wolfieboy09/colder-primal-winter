@@ -5,8 +5,7 @@ import io.netty.buffer.ByteBuf;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 
-public interface NetworkSetupCallback
-{
+public interface NetworkSetupCallback {
     /**
      * Register a server to client packet, that is handled on main thread on receipt on client.
      */

@@ -22,14 +22,12 @@ import net.minecraft.world.level.levelgen.structure.templatesystem.StructureProc
 /**
  * Modified from {@link net.minecraft.data.worldgen.VillagePools}, but modified to only include zombie villages
  */
-public class BuiltinTemplatePools
-{
+public class BuiltinTemplatePools {
     final BootstrapContext<StructureTemplatePool> context;
     final HolderGetter<StructureTemplatePool> structurePools;
     final HolderGetter<StructureProcessorList> processors;
 
-    public BuiltinTemplatePools(BootstrapContext<StructureTemplatePool> context)
-    {
+    public BuiltinTemplatePools(BootstrapContext<StructureTemplatePool> context) {
         this.context = context;
         this.structurePools = context.lookup(Registries.TEMPLATE_POOL);
         this.processors = context.lookup(Registries.PROCESSOR_LIST);
@@ -67,8 +65,7 @@ public class BuiltinTemplatePools
         ));
     }
 
-    void register(ResourceKey<StructureTemplatePool> key, List<Pair<Function<StructureTemplatePool.Projection, ? extends StructurePoolElement>, Integer>> factories)
-    {
+    void register(ResourceKey<StructureTemplatePool> key, List<Pair<Function<StructureTemplatePool.Projection, ? extends StructurePoolElement>, Integer>> factories) {
         context.register(key, new StructureTemplatePool(structurePools.getOrThrow(Pools.EMPTY), factories, StructureTemplatePool.Projection.RIGID));
     }
 }

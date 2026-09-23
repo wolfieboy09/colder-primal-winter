@@ -8,11 +8,9 @@ import org.spongepowered.asm.mixin.Mutable;
 import org.spongepowered.asm.mixin.gen.Accessor;
 
 @Mixin(AxeItem.class)
-public interface AxeItemAccessor
-{
+public interface AxeItemAccessor {
     @Accessor("STRIPPABLES")
-    static Map<Block, Block> accessor$getStrippables()
-    {
+    static Map<Block, Block> accessor$getStrippables() {
         throw new AssertionError();
     }
 

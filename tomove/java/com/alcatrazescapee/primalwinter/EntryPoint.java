@@ -23,11 +23,9 @@ import net.neoforged.neoforge.data.event.GatherDataEvent;
 import net.neoforged.neoforge.registries.NeoForgeRegistries;
 
 @EventBusSubscriber(modid = PrimalWinter.MOD_ID)
-public final class EntryPoint
-{
+public final class EntryPoint {
     @SubscribeEvent
-    public static void gatherData(GatherDataEvent event)
-    {
+    public static void gatherData(GatherDataEvent event) {
         event.getGenerator().addProvider(true, new BuiltinI18n(event));
         event.getGenerator().addProvider(true, new BuiltinModels(event));
         event.getGenerator().addProvider(true, new BuiltinBlockTags(event));

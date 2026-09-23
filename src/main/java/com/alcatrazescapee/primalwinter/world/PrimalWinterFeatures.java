@@ -22,35 +22,30 @@ import com.alcatrazescapee.primalwinter.platform.RegistryInterface;
 import com.alcatrazescapee.primalwinter.platform.XPlatform;
 
 @SuppressWarnings("unused")
-public final class PrimalWinterFeatures
-{
+public final class PrimalWinterFeatures {
     public static final RegistryInterface<Feature<?>> FEATURES = XPlatform.INSTANCE.registryInterface(BuiltInRegistries.FEATURE);
 
     public static final RegistryHolder<ImprovedFreezeTopLayerFeature> FREEZE_TOP_LAYER = register("freeze_top_layer", ImprovedFreezeTopLayerFeature::new, NoneFeatureConfiguration.CODEC);
     public static final RegistryHolder<ImprovedIceSpikeFeature> ICE_SPIKES = register("ice_spikes", ImprovedIceSpikeFeature::new, NoneFeatureConfiguration.CODEC);
     public static final RegistryHolder<DiskFeature> DISK = register("disk", DiskFeature::new, DiskConfiguration.CODEC);
 
-    private static <C extends FeatureConfiguration, F extends Feature<C>> RegistryHolder<F> register(String name, Function<Codec<C>, F> feature, Codec<C> codec)
-    {
+    private static <C extends FeatureConfiguration, F extends Feature<C>> RegistryHolder<F> register(String name, Function<Codec<C>, F> feature, Codec<C> codec) {
         return FEATURES.register(name, () -> feature.apply(codec));
     }
 
-    public static final class Keys
-    {
+    public static final class Keys {
         public static final ResourceKey<PlacedFeature> FREEZE_TOP_LAYER = key("freeze_top_layer");
         public static final ResourceKey<PlacedFeature> ICE_SPIKES = key("ice_spikes");
         public static final ResourceKey<PlacedFeature> ICE_PATCH = key("ice_patch");
         public static final ResourceKey<PlacedFeature> SNOW_PATCH = key("snow_patch");
         public static final ResourceKey<PlacedFeature> POWDER_SNOW_PATCH = key("powder_snow_patch");
 
-        private static ResourceKey<PlacedFeature> key(String name)
-        {
+        private static ResourceKey<PlacedFeature> key(String name) {
             return ResourceKey.create(Registries.PLACED_FEATURE, Helpers.identifier(name));
         }
     }
 
-    public static void addSpawns(BiConsumer<MobCategory, MobSpawnSettings.SpawnerData> spawns)
-    {
+    public static void addSpawns(BiConsumer<MobCategory, MobSpawnSettings.SpawnerData> spawns) {
         spawns.accept(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(EntityType.POLAR_BEAR, 30, 1, 3));
         spawns.accept(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(EntityType.STRAY, 400, 4, 4));
     }

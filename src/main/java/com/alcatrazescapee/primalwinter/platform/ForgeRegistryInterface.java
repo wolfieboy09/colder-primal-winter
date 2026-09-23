@@ -11,38 +11,31 @@ import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import org.jetbrains.annotations.VisibleForTesting;
 
-public final class ForgeRegistryInterface<T> implements RegistryInterface<T>
-{
+public final class ForgeRegistryInterface<T> implements RegistryInterface<T> {
     @VisibleForTesting public final DeferredRegister<T> deferred;
 
-    public ForgeRegistryInterface(Registry<T> registry)
-    {
+    public ForgeRegistryInterface(Registry<T> registry) {
         this.deferred = DeferredRegister.create(registry.key(), PrimalWinter.MOD_ID);
     }
 
     @Override
-    public void earlySetup()
-    {
+    public void earlySetup() {
         deferred.register(ForgePrimalWinter.EVENT_BUS);
     }
 
     @Override
-    public <V extends T> RegistryHolder<V> register(String name, Supplier<? extends V> factory)
-    {
+    public <V extends T> RegistryHolder<V> register(String name, Supplier<? extends V> factory) {
         return new Holder<>(deferred.register(name, factory));
     }
 
-    record Holder<T, V extends T>(DeferredHolder<T, V> obj) implements RegistryHolder<V>
-    {
+    record Holder<T, V extends T>(DeferredHolder<T, V> obj) implements RegistryHolder<V> {
         @Override
-        public V get()
-        {
+        public V get() {
             return obj.value();
         }
 
         @Override
-        public ResourceLocation id()
-        {
+        public ResourceLocation id() {
             return obj.getId();
         }
     }

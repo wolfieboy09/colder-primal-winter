@@ -30,8 +30,7 @@ import com.alcatrazescapee.primalwinter.platform.XPlatform;
 
 import static net.minecraft.world.level.block.state.BlockBehaviour.Properties.*;
 
-public final class PrimalWinterBlocks
-{
+public final class PrimalWinterBlocks {
     public static final RegistryInterface<Block> BLOCKS = XPlatform.INSTANCE.registryInterface(BuiltInRegistries.BLOCK);
     public static final RegistryInterface<Item> ITEMS = XPlatform.INSTANCE.registryInterface(BuiltInRegistries.ITEM);
 
@@ -160,15 +159,13 @@ public final class PrimalWinterBlocks
         .put(SNOWY_MANGROVE_LOG, () -> Blocks.MANGROVE_LOG)
         .build();
 
-    public static void registerAxeStrippables()
-    {
+    public static void registerAxeStrippables() {
         final Map<Block, Block> strippables = new HashMap<>(AxeItemAccessor.accessor$getStrippables());
         SNOWY_LOG_STRIPPING_BLOCKS.forEach((from, to) -> strippables.put(from.get(), to.get()));
         AxeItemAccessor.accessor$setStrippables(strippables);
     }
 
-    private static <T extends Block> RegistryHolder<T> register(String name, Supplier<T> blockFactory)
-    {
+    private static <T extends Block> RegistryHolder<T> register(String name, Supplier<T> blockFactory) {
         final RegistryHolder<T> block = BLOCKS.register(name, blockFactory);
         ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties()));
         PrimalWinterItemGroups.ENTRIES.add(block);

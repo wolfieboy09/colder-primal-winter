@@ -18,23 +18,20 @@ import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfigur
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 import net.minecraft.world.level.levelgen.feature.stateproviders.RuleBasedBlockStateProvider;
 
-public final class BuiltinFeatures
-{
+public final class BuiltinFeatures {
     public static final ResourceKey<ConfiguredFeature<?, ?>> FREEZE_TOP_LAYER = key("freeze_top_layer");
     public static final ResourceKey<ConfiguredFeature<?, ?>> ICE_PATCH = key("ice_patch");
     public static final ResourceKey<ConfiguredFeature<?, ?>> ICE_SPIKES = key("ice_spikes");
     public static final ResourceKey<ConfiguredFeature<?, ?>> POWDER_SNOW_PATCH = key("powder_snow_patch");
     public static final ResourceKey<ConfiguredFeature<?, ?>> SNOW_PATCH = key("snow_patch");
 
-    static ResourceKey<ConfiguredFeature<?, ?>> key(String id)
-    {
+    static ResourceKey<ConfiguredFeature<?, ?>> key(String id) {
         return ResourceKey.create(Registries.CONFIGURED_FEATURE, Helpers.identifier(id));
     }
 
     final BootstrapContext<ConfiguredFeature<?, ?>> context;
 
-    public BuiltinFeatures(BootstrapContext<ConfiguredFeature<?, ?>> context)
-    {
+    public BuiltinFeatures(BootstrapContext<ConfiguredFeature<?, ?>> context) {
         this.context = context;
 
         register(FREEZE_TOP_LAYER, PrimalWinterFeatures.FREEZE_TOP_LAYER, NoneFeatureConfiguration.NONE);
@@ -44,8 +41,7 @@ public final class BuiltinFeatures
         register(SNOW_PATCH, PrimalWinterFeatures.DISK, disk(Blocks.SNOW_BLOCK));
     }
 
-    DiskConfiguration disk(Block block)
-    {
+    DiskConfiguration disk(Block block) {
         return new DiskConfiguration(
             RuleBasedBlockStateProvider.simple(block),
             BlockPredicate.matchesTag(PrimalWinterBlockTags.REPLACEABLE_WITH_SNOWY_STUFF),
@@ -53,8 +49,7 @@ public final class BuiltinFeatures
         );
     }
 
-    <C extends FeatureConfiguration> void register(ResourceKey<ConfiguredFeature<?, ?>> key, Supplier<? extends Feature<C>> feature, C config)
-    {
+    <C extends FeatureConfiguration> void register(ResourceKey<ConfiguredFeature<?, ?>> key, Supplier<? extends Feature<C>> feature, C config) {
         context.register(key, new ConfiguredFeature<>(feature.get(), config));
     }
 }

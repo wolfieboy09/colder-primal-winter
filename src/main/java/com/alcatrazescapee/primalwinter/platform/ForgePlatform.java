@@ -8,18 +8,14 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.item.CreativeModeTab;
 import net.neoforged.neoforge.server.ServerLifecycleHooks;
 
-public final class ForgePlatform implements XPlatform
-{
-    public static void runBiomeModifiers(MinecraftServer server)
-    {
-        try
-        {
+public final class ForgePlatform implements XPlatform {
+    public static void runBiomeModifiers(MinecraftServer server) {
+        try {
             final Method method = ServerLifecycleHooks.class.getDeclaredMethod("runModifiers", MinecraftServer.class);
             method.setAccessible(true);
             method.invoke(null, server);
         }
-        catch (InvocationTargetException | NoSuchMethodException | IllegalAccessException e)
-        {
+        catch (InvocationTargetException | NoSuchMethodException | IllegalAccessException e) {
             Helpers.throwAsUnchecked(e);
         }
     }
@@ -27,20 +23,17 @@ public final class ForgePlatform implements XPlatform
     private final ForgeConfig config = new ForgeConfig();
 
     @Override
-    public <T> RegistryInterface<T> registryInterface(Registry<T> registry)
-    {
+    public <T> RegistryInterface<T> registryInterface(Registry<T> registry) {
         return new ForgeRegistryInterface<>(registry);
     }
 
     @Override
-    public CreativeModeTab.Builder creativeTab()
-    {
+    public CreativeModeTab.Builder creativeTab() {
         return CreativeModeTab.builder();
     }
 
     @Override
-    public Config config()
-    {
+    public Config config() {
         return config;
     }
 }

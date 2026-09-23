@@ -7,16 +7,13 @@ import net.minecraft.tags.EntityTypeTags;
 import net.minecraft.world.entity.EntityType;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
 
-public final class BuiltinEntityTags extends EntityTypeTagsProvider
-{
-    public BuiltinEntityTags(GatherDataEvent event)
-    {
+public final class BuiltinEntityTags extends EntityTypeTagsProvider {
+    public BuiltinEntityTags(GatherDataEvent event) {
         super(event.getGenerator().getPackOutput(), event.getLookupProvider(), PrimalWinter.MOD_ID, event.getExistingFileHelper());
     }
 
     @Override
-    protected void addTags(HolderLookup.Provider provider)
-    {
+    protected void addTags(HolderLookup.Provider provider) {
         tag(EntityTypeTags.FREEZE_IMMUNE_ENTITY_TYPES)
             .addTag(EntityTypeTags.UNDEAD)
             .addTag(EntityTypeTags.RAIDERS)

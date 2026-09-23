@@ -10,16 +10,13 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(DimensionSpecialEffects.class)
-public abstract class DimensionSpecialEffectsMixin
-{
+public abstract class DimensionSpecialEffectsMixin {
     @SuppressWarnings("ConstantConditions")
     @Inject(method = "getSunriseColor", at = @At("RETURN"), cancellable = true)
-    private void noSunriseColor(float skyAngle, float tickDelta, CallbackInfoReturnable<float[]> cir)
-    {
+    private void noSunriseColor(float skyAngle, float tickDelta, CallbackInfoReturnable<float[]> cir) {
         final float[] original = cir.getReturnValue();
         final Level level = Minecraft.getInstance().level;
-        if (original != null && level != null && XPlatform.INSTANCE.config().isWinterDimension(level.dimension()))
-        {
+        if (original != null && level != null && XPlatform.INSTANCE.config().isWinterDimension(level.dimension())) {
             cir.setReturnValue(null);
         }
     }

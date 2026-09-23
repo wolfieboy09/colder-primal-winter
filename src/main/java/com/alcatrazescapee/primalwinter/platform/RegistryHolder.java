@@ -6,8 +6,7 @@ import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 
-public interface RegistryHolder<T> extends Supplier<T>
-{
+public interface RegistryHolder<T> extends Supplier<T> {
     @Override
     T get();
 

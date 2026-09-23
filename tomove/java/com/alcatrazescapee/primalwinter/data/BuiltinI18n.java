@@ -15,21 +15,18 @@ import net.neoforged.neoforge.data.event.GatherDataEvent;
 import static com.alcatrazescapee.primalwinter.PrimalWinter.*;
 import static com.alcatrazescapee.primalwinter.blocks.PrimalWinterBlocks.*;
 
-public class BuiltinI18n extends LanguageProvider
-{
+public class BuiltinI18n extends LanguageProvider {
     private final Set<Block> untranslatedBlocks = ((ForgeRegistryInterface<Block>) BLOCKS).deferred.getEntries()
         .stream()
         .map(Supplier::get)
         .collect(Collectors.toSet());
 
-    public BuiltinI18n(GatherDataEvent event)
-    {
+    public BuiltinI18n(GatherDataEvent event) {
         super(event.getGenerator().getPackOutput(), MOD_ID, "en_us");
     }
 
     @Override
-    protected void addTranslations()
-    {
+    protected void addTranslations() {
         add(MOD_ID + ".items", "Primal Winter");
         add(MOD_ID + ".subtitle.wind", "Wind Howls");
 
@@ -107,14 +104,12 @@ public class BuiltinI18n extends LanguageProvider
     }
 
     @Override
-    public void addBlock(Supplier<? extends Block> key, String name)
-    {
+    public void addBlock(Supplier<? extends Block> key, String name) {
         untranslatedBlocks.remove(key.get());
         super.addBlock(key, name);
     }
 
-    private void addConfig(String key, String name)
-    {
+    private void addConfig(String key, String name) {
         add(MOD_ID + ".config." + key, name);
     }
 }

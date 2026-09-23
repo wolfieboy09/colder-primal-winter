@@ -45,8 +45,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(LevelRenderer.class)
 public abstract class LevelRendererMixin
-    implements ReloadableLevelRenderer
-{
+    implements ReloadableLevelRenderer {
     @Shadow @Final private static ResourceLocation SNOW_LOCATION;
 
     @Shadow private ClientLevel level;
@@ -61,8 +60,7 @@ public abstract class LevelRendererMixin
     @Unique private boolean primalWinter$isWinterDimension;
 
     @Override
-    public void primalWinter$reload()
-    {
+    public void primalWinter$reload() {
         primalWinter$isWinterDimension = level != null && XPlatform.INSTANCE.config().isWinterDimension(level.dimension());
     }
 
@@ -70,8 +68,7 @@ public abstract class LevelRendererMixin
      * Record, when the level is set, if this dimension is set to have winter render effects.
      */
     @Inject(method = "setLevel", at = @At("RETURN"))
-    private void checkIfLevelIsWinter(@Nullable ClientLevel level, CallbackInfo ci)
-    {
+    private void checkIfLevelIsWinter(@Nullable ClientLevel level, CallbackInfo ci) {
         primalWinter$reload();
     }
 
@@ -82,10 +79,8 @@ public abstract class LevelRendererMixin
      * modifying other weather rendering call paths.
      */
     @Inject(method = "renderSnowAndRain", at = @At("HEAD"), cancellable = true)
-    private void renderFastSnow(LightTexture lightTexture, float partialTick, double srcCamX, double srcCamY, double srcCamZ, CallbackInfo ci)
-    {
-        if (!primalWinter$isWinterDimension)
-        {
+    private void renderFastSnow(LightTexture lightTexture, float partialTick, double srcCamX, double srcCamY, double srcCamZ, CallbackInfo ci) {
+        if (!primalWinter$isWinterDimension) {
             return; // Take the normal path
         }
 
@@ -112,10 +107,8 @@ public abstract class LevelRendererMixin
         RenderSystem.depthMask(Minecraft.useShaderTransparency());
         RenderSystem.setShader(GameRenderer::getParticleShader);
 
-        for (int z = blockZ - particleAmount; z <= blockZ + particleAmount; z++)
-        {
-            for (int x = blockX - particleAmount; x <= blockX + particleAmount; x++)
-            {
+        for (int z = blockZ - particleAmount; z <= blockZ + particleAmount; z++) {
+            for (int x = blockX - particleAmount; x <= blockX + particleAmount; x++) {
                 final int rainSizeIndex = (z - blockZ + 16) * 32 + x - blockX + 16;
                 final float rainSizeX = this.rainSizeX[rainSizeIndex] * 0.5F;
                 final float rainSizeZ = this.rainSizeZ[rainSizeIndex] * 0.5F;
@@ -123,22 +116,18 @@ public abstract class LevelRendererMixin
                 int minY = blockY - particleAmount;
                 int maxY = blockY + particleAmount;
 
-                if (minY < y)
-                {
+                if (minY < y) {
                     minY = y;
                 }
 
-                if (maxY < y)
-                {
+                if (maxY < y) {
                     maxY = y;
                 }
 
                 final int targetY = Math.max(y, blockY);
 
-                if (minY != maxY)
-                {
-                    if (!renderedAny)
-                    {
+                if (minY != maxY) {
+                    if (!renderedAny) {
                         renderedAny = true;
                         RenderSystem.setShaderTexture(0, SNOW_LOCATION);
                         buffer = tesselator.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.PARTICLE);
@@ -186,8 +175,7 @@ public abstract class LevelRendererMixin
             }
         }
 
-        if (renderedAny)
-        {
+        if (renderedAny) {
             BufferUploader.drawWithShader(buffer.buildOrThrow());
         }
 
@@ -203,10 +191,8 @@ public abstract class LevelRendererMixin
      * intending to be dimension-specific.
      */
     @Inject(method = "tickRain", at = @At("HEAD"))
-    private void addExtraSnowParticlesAndSounds(Camera camera, CallbackInfo ci)
-    {
-        if (!primalWinter$isWinterDimension)
-        {
+    private void addExtraSnowParticlesAndSounds(Camera camera, CallbackInfo ci) {
+        if (!primalWinter$isWinterDimension) {
             return; // If not a winter dimension, use the original code
         }
 
@@ -219,17 +205,14 @@ public abstract class LevelRendererMixin
 
         assert level != null;
 
-        for (int iparticle = 0; iparticle < particleAmount; iparticle++)
-        {
+        for (int iparticle = 0; iparticle < particleAmount; iparticle++) {
             final int particleX = random.nextInt(21) - 10;
             final int particleZ = random.nextInt(21) - 10;
             final BlockPos particlePos = level.getHeightmapPos(Heightmap.Types.MOTION_BLOCKING, origin.offset(particleX, 0, particleZ));
 
-            if (particlePos.getY() > level.getMinBuildHeight() && particlePos.getY() <= origin.getY() + 10 && particlePos.getY() >= origin.getY() - 10)
-            {
+            if (particlePos.getY() > level.getMinBuildHeight() && particlePos.getY() <= origin.getY() + 10 && particlePos.getY() >= origin.getY() - 10) {
                 pos = particlePos.below();
-                if (minecraft.options.particles().get() == ParticleStatus.MINIMAL)
-                {
+                if (minecraft.options.particles().get() == ParticleStatus.MINIMAL) {
                     break;
                 }
 
@@ -250,38 +233,31 @@ public abstract class LevelRendererMixin
             }
         }
 
-        if (pos != null && random.nextInt(3) < this.rainSoundTime++ && XPlatform.INSTANCE.config().snowSounds.getAsBoolean())
-        {
+        if (pos != null && random.nextInt(3) < this.rainSoundTime++ && XPlatform.INSTANCE.config().snowSounds.getAsBoolean()) {
             rainSoundTime = 0;
-            if (pos.getY() > origin.getY() + 1 && level.getHeightmapPos(Heightmap.Types.MOTION_BLOCKING, origin).getY() > Mth.floor(origin.getY()))
-            {
+            if (pos.getY() > origin.getY() + 1 && level.getHeightmapPos(Heightmap.Types.MOTION_BLOCKING, origin).getY() > Mth.floor(origin.getY())) {
                 // Modified: use a lower volume for these sounds, since they are too indicative of rain, not snow
                 level.playLocalSound(pos, SoundEvents.WEATHER_RAIN_ABOVE, SoundSource.WEATHER, 0.05f, 0.2f, false);
             }
-            else
-            {
+            else {
                 level.playLocalSound(pos, SoundEvents.WEATHER_RAIN, SoundSource.WEATHER, 0.1f, 0.5f, false);
             }
         }
 
         // Added: wind sounds as well
-        if (primalWinter$windSoundTime-- < 0 && pos != null && XPlatform.INSTANCE.config().windSounds.getAsBoolean())
-        {
+        if (primalWinter$windSoundTime-- < 0 && pos != null && XPlatform.INSTANCE.config().windSounds.getAsBoolean()) {
             final int light = level.getBrightness(LightLayer.SKY, pos);
-            if (light > 3)
-            {
+            if (light > 3) {
                 // In a windy location, play wind sounds
                 float volumeModifier = 0.2f + (light - 3) * 0.01f;
                 float pitchModifier = 0.7f;
-                if (camera.getFluidInCamera() != FogType.NONE)
-                {
+                if (camera.getFluidInCamera() != FogType.NONE) {
                     pitchModifier = 0.3f;
                 }
                 primalWinter$windSoundTime = 20 * 3 + random.nextInt(30);
                 this.level.playLocalSound(pos, PrimalWinterAmbience.WIND.get(), SoundSource.WEATHER, volumeModifier, pitchModifier, false);
             }
-            else
-            {
+            else {
                 primalWinter$windSoundTime += 5; // check a short time later
             }
         }

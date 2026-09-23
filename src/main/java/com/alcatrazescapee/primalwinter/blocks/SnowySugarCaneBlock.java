@@ -8,22 +8,18 @@ import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.SugarCaneBlock;
 import net.minecraft.world.level.block.state.BlockState;
 
-public class SnowySugarCaneBlock extends SugarCaneBlock
-{
-    public SnowySugarCaneBlock(Properties properties)
-    {
+public class SnowySugarCaneBlock extends SugarCaneBlock {
+    public SnowySugarCaneBlock(Properties properties) {
         super(properties);
     }
 
     @Override
-    protected void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random)
-    {
+    protected void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
         // No random ticks, frozen plants don't grow
     }
 
     @Override
-    protected boolean canSurvive(BlockState state, LevelReader level, BlockPos pos)
-    {
+    protected boolean canSurvive(BlockState state, LevelReader level, BlockPos pos) {
         // Override to vastly simplify the survive check. Snowy sugarcane does not grow, and has no growth requirements,
         // so we don't check for nearby water or ice. There is a separate check for world generation to stop sugar cane from
         // just appearing anywhere.

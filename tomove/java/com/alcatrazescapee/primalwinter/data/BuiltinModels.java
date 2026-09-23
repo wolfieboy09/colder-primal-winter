@@ -24,16 +24,13 @@ import net.neoforged.neoforge.data.event.GatherDataEvent;
 
 import static com.alcatrazescapee.primalwinter.blocks.PrimalWinterBlocks.*;
 
-public final class BuiltinModels extends BlockStateProvider
-{
-    public BuiltinModels(GatherDataEvent event)
-    {
+public final class BuiltinModels extends BlockStateProvider {
+    public BuiltinModels(GatherDataEvent event) {
         super(event.getGenerator().getPackOutput(), PrimalWinter.MOD_ID, event.getExistingFileHelper());
     }
 
     @Override
-    protected void registerStatesAndModels()
-    {
+    protected void registerStatesAndModels() {
         snowyBlock(SNOWY_DIRT);
         snowyBlock(SNOWY_COARSE_DIRT);
         snowyBlock(SNOWY_SAND);
@@ -99,15 +96,13 @@ public final class BuiltinModels extends BlockStateProvider
         mushroomBlock(SNOWY_MUSHROOM_STEM);
     }
 
-    void snowyBlock(Supplier<Block> block)
-    {
+    void snowyBlock(Supplier<Block> block) {
         final String name = nonSnowyName(block);
         simpleBlockWithItem(block.get(), models()
             .cubeBottomTop(name, modLoc("block/snowy_" + name), mcLoc("block/" + name), mcLoc("block/snow")));
     }
 
-    void logBlock(Supplier<RotatedPillarBlock> block)
-    {
+    void logBlock(Supplier<RotatedPillarBlock> block) {
         final String name = name(block);
         final ModelFile model = models().cubeColumn(name, modLoc("block/" + name), modLoc("block/" + name + "_top"));
         getVariantBuilder(block.get())
@@ -117,16 +112,14 @@ public final class BuiltinModels extends BlockStateProvider
         simpleBlockItem(block.get(), model);
     }
 
-    void leavesBlock(Supplier<Block> block)
-    {
+    void leavesBlock(Supplier<Block> block) {
         simpleBlockWithItem(block.get(), models()
             .withExistingParent(name(block), modLoc("block/snowy_leaves"))
             .texture("all", mcLoc("block/" + nonSnowyName(block)))
             .texture("overlay", modLoc("block/snowy_leaves_overlay")));
     }
 
-    void vineBlock(Supplier<Block> block)
-    {
+    void vineBlock(Supplier<Block> block) {
         record Part(BooleanProperty property, int xRot, int yRot) {}
 
         final ModelFile model = models().getExistingFile(modLoc("block/snowy_vine"));
@@ -156,14 +149,11 @@ public final class BuiltinModels extends BlockStateProvider
         itemModels().getBuilder(name(block)).parent(model);
     }
 
-    void bambooBlock(RegistryHolder<Block> block)
-    {
+    void bambooBlock(RegistryHolder<Block> block) {
         final MultiPartBlockStateBuilder builder = getMultipartBuilder(block.get());
-        for (int age = 0; age <= 1; age++)
-        {
+        for (int age = 0; age <= 1; age++) {
             var part = builder.part();
-            for (int i = 1; i <= 4; i++)
-            {
+            for (int i = 1; i <= 4; i++) {
                 part.modelFile(models()
                     .withExistingParent("bamboo%d_age%d".formatted(i, age), mcLoc("block/bamboo%d_age%d".formatted(i, age)))
                     .texture("all", modLoc("block/snowy_bamboo_stalk"))
@@ -172,8 +162,7 @@ public final class BuiltinModels extends BlockStateProvider
             }
             part.addModel().condition(BambooStalkBlock.AGE, age);
         }
-        for (BambooLeaves leaves : List.of(BambooLeaves.SMALL, BambooLeaves.LARGE))
-        {
+        for (BambooLeaves leaves : List.of(BambooLeaves.SMALL, BambooLeaves.LARGE)) {
             final String leavesName = "bamboo_%s_leaves".formatted(leaves.getSerializedName());
             builder.part()
                 .modelFile(models()
@@ -186,8 +175,7 @@ public final class BuiltinModels extends BlockStateProvider
         itemModels().basicItem(block.id());
     }
 
-    void lilyPadBlock(RegistryHolder<Block> block)
-    {
+    void lilyPadBlock(RegistryHolder<Block> block) {
         final BlockModelBuilder model = models().withExistingParent(name(block), mcLoc("block/lily_pad"))
             .texture("particle", modLoc("block/snowy_lily_pad"))
             .texture("texture", modLoc("block/snowy_lily_pad"));
@@ -203,8 +191,7 @@ public final class BuiltinModels extends BlockStateProvider
             .texture("layer0", modLoc("block/snowy_lily_pad"));
     }
 
-    void mushroomBlock(Supplier<Block> block)
-    {
+    void mushroomBlock(Supplier<Block> block) {
         final String name = name(block);
         final ModelFile outside = models().singleTexture(name, mcLoc("block/template_single_face"), modLoc("block/" + name));
         final ModelFile inside = models().getExistingFile(mcLoc("block/mushroom_block_inside"));
@@ -234,19 +221,16 @@ public final class BuiltinModels extends BlockStateProvider
         simpleBlockItem(block.get(), models().cubeAll(name + "_inventory", modLoc("block/" + name)));
     }
 
-    void simpleBlockWithItem(Supplier<Block> block, ModelFile model, Function<ModelFile, ConfiguredModel[]> models)
-    {
+    void simpleBlockWithItem(Supplier<Block> block, ModelFile model, Function<ModelFile, ConfiguredModel[]> models) {
         simpleBlock(block.get(), models.apply(model));
         simpleBlockItem(block.get(), model);
     }
 
-    String nonSnowyName(Supplier<? extends Block> block)
-    {
+    String nonSnowyName(Supplier<? extends Block> block) {
         return name(block).replace("snowy_", "");
     }
 
-    String name(Supplier<? extends Block> block)
-    {
+    String name(Supplier<? extends Block> block) {
         return BuiltInRegistries.BLOCK.getKey(block.get()).getPath();
     }
 }

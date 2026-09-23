@@ -13,8 +13,7 @@ import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.common.ModConfigSpec;
 import net.neoforged.neoforge.network.PacketDistributor;
 
-public class ForgeConfig extends Config
-{
+public class ForgeConfig extends Config {
     public final ModConfigSpec common;
     public final ModConfigSpec client;
 
@@ -26,8 +25,7 @@ public class ForgeConfig extends Config
     private int fogColorDayCache = -1;
     private int fogColorNightCache = -1;
 
-    ForgeConfig()
-    {
+    ForgeConfig() {
         final ModConfigSpec.Builder common = new ModConfigSpec.Builder();
         final ModConfigSpec.Builder client = new ModConfigSpec.Builder();
 
@@ -99,15 +97,13 @@ public class ForgeConfig extends Config
         this.client = client.build();
     }
 
-    public void updateCaches()
-    {
+    public void updateCaches() {
         fogColorDayCache = extractColor(fogColorDayValue);
         fogColorNightCache = extractColor(fogColorNightValue);
     }
 
     @Override
-    protected Collection<ResourceKey<Level>> winterDimensions()
-    {
+    protected Collection<ResourceKey<Level>> winterDimensions() {
         return winterDimensions.get()
             .stream()
             .map(ResourceLocation::tryParse)
@@ -117,26 +113,22 @@ public class ForgeConfig extends Config
     }
 
     @Override
-    protected void syncTo(ServerPlayer player, ConfigPacket packet)
-    {
+    protected void syncTo(ServerPlayer player, ConfigPacket packet) {
         PacketDistributor.sendToPlayer(player, packet);
     }
 
-    private String key(String path)
-    {
+    private String key(String path) {
         return PrimalWinter.MOD_ID + ".config." + path;
     }
 
-    private boolean isColor(Object o)
-    {
+    private boolean isColor(Object o) {
         if (!(o instanceof String s)) return false;
         try { Integer.parseInt(s, 16); }
         catch (NumberFormatException e) { return false; }
         return true;
     }
 
-    private int extractColor(ModConfigSpec.ConfigValue<String> value)
-    {
+    private int extractColor(ModConfigSpec.ConfigValue<String> value) {
         try { return Integer.parseInt(value.get()); }
         catch (NumberFormatException e) { return -1; }
     }

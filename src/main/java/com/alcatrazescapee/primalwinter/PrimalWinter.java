@@ -10,13 +10,11 @@ import com.alcatrazescapee.primalwinter.world.PrimalWinterFeatures;
 import com.mojang.logging.LogUtils;
 import org.slf4j.Logger;
 
-public final class PrimalWinter
-{
+public final class PrimalWinter {
     public static final String MOD_ID = "primalwinter";
     private static final Logger LOGGER = LogUtils.getLogger();
 
-    public static void earlySetup()
-    {
+    public static void earlySetup() {
         LOGGER.info("Early XPlatform Setup");
 
         PrimalWinterBlocks.BLOCKS.earlySetup();
@@ -27,8 +25,7 @@ public final class PrimalWinter
         PrimalWinterAmbience.SOUND_EVENTS.earlySetup();
     }
 
-    public static void lateSetup()
-    {
+    public static void lateSetup() {
         LOGGER.info("Late XPlatform Setup");
 
         PrimalWinterBlocks.BLOCKS.lateSetup();
@@ -41,8 +38,7 @@ public final class PrimalWinter
         PrimalWinterBlocks.registerAxeStrippables();
     }
 
-    public static void networkingSetup(NetworkSetupCallback callback)
-    {
+    public static void networkingSetup(NetworkSetupCallback callback) {
         callback.registerS2C(ConfigPacket.TYPE, ConfigPacket.CODEC, XPlatform.INSTANCE.config()::onSync);
     }
 }

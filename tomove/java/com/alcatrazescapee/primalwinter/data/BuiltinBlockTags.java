@@ -10,16 +10,13 @@ import net.neoforged.neoforge.data.event.GatherDataEvent;
 import static com.alcatrazescapee.primalwinter.blocks.PrimalWinterBlocks.*;
 import static com.alcatrazescapee.primalwinter.util.PrimalWinterBlockTags.*;
 
-public final class BuiltinBlockTags extends BlockTagsProvider
-{
-    public BuiltinBlockTags(GatherDataEvent event)
-    {
+public final class BuiltinBlockTags extends BlockTagsProvider {
+    public BuiltinBlockTags(GatherDataEvent event) {
         super(event.getGenerator().getPackOutput(), event.getLookupProvider(), PrimalWinter.MOD_ID, event.getExistingFileHelper());
     }
 
     @Override
-    protected void addTags(HolderLookup.Provider provider)
-    {
+    protected void addTags(HolderLookup.Provider provider) {
         tag(REPLACEABLE_WITH_SNOW)
             .addTag(BlockTags.FLOWERS)
             .add(

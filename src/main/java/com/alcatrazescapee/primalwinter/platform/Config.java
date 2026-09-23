@@ -20,8 +20,7 @@ import org.jetbrains.annotations.CheckReturnValue;
 import org.slf4j.Logger;
 
 @SuppressWarnings("NotNullFieldNotInitialized") // Initialized by subclasses
-public abstract class Config
-{
+public abstract class Config {
     public static final Logger LOGGER = LogUtils.getLogger();
 
     // Common
@@ -63,8 +62,7 @@ public abstract class Config
      * by TerraBlender, so we need to do some tricky fiddling to get this to work properly. We reorder the statements in
      * {@code handleServerAboutToStart()}, so that the expected ordering (on Fabric) is preserved.
      */
-    public final void loadWinterBiomes(MinecraftServer server)
-    {
+    public final void loadWinterBiomes(MinecraftServer server) {
         winterDimensionsView = ImmutableSet.copyOf(winterDimensions());
         winterBiomesView = server.registryAccess()
             .registryOrThrow(Registries.LEVEL_STEM)
@@ -81,13 +79,11 @@ public abstract class Config
         LOGGER.info("Loaded winter dimensions={}, biomes={}", winterDimensionsView.size(), winterBiomesView.size());
     }
 
-    public final void syncTo(ServerPlayer player)
-    {
+    public final void syncTo(ServerPlayer player) {
         syncTo(player, new ConfigPacket(winterDimensionsView));
     }
 
-    public final void onSync(ConfigPacket packet)
-    {
+    public final void onSync(ConfigPacket packet) {
         winterDimensionsView = ImmutableSet.copyOf(packet.winterDimensions());
         ((ReloadableLevelRenderer) Minecraft.getInstance().levelRenderer).primalWinter$reload();
     }
@@ -95,16 +91,14 @@ public abstract class Config
     /**
      * @return {@code true} if this dimensions is a winter dimension.
      */
-    public final boolean isWinterDimension(ResourceKey<Level> dimension)
-    {
+    public final boolean isWinterDimension(ResourceKey<Level> dimension) {
         return winterDimensionsView.contains(dimension);
     }
 
     /**
      * @return {@code true} if this is a winter biome, when queried from server. <strong>Not valid on client!</strong>
      */
-    public final boolean isWinterBiome(ResourceKey<Biome> biome)
-    {
+    public final boolean isWinterBiome(ResourceKey<Biome> biome) {
         assert winterDimensionsView.isEmpty() || !winterBiomesView.isEmpty(); // Config loaded check, allowing for no enabled winter dimensions
         return winterBiomesView.contains(biome);
     }

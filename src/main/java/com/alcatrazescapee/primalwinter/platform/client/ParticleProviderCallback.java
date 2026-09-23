@@ -7,7 +7,6 @@ import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleType;
 
 @FunctionalInterface
-public interface ParticleProviderCallback
-{
+public interface ParticleProviderCallback {
     <T extends ParticleOptions> void accept(ParticleType<T> type, Function<SpriteSet, ParticleProvider<T>> provider);
 }

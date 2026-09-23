@@ -10,11 +10,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import com.alcatrazescapee.primalwinter.util.EventHandler;
 
 @Mixin(ServerLevel.class)
-public abstract class ServerLevelMixin
-{
+public abstract class ServerLevelMixin {
     @Inject(method = "tickChunk", at = @At(value = "RETURN"))
-    public void placeExtraSnow(LevelChunk chunk, int tickSpeed, CallbackInfo ci)
-    {
+    public void placeExtraSnow(LevelChunk chunk, int tickSpeed, CallbackInfo ci) {
         EventHandler.placeExtraSnow((ServerLevel) (Object) this, chunk);
     }
 }

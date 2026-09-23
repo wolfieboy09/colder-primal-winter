@@ -13,25 +13,20 @@ import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConf
 /**
  * The standard ice spike feature does not place unless it encounters a snow block. This avoids that restriction.
  */
-public class ImprovedIceSpikeFeature extends IceSpikeFeature
-{
-    public ImprovedIceSpikeFeature(Codec<NoneFeatureConfiguration> codec)
-    {
+public class ImprovedIceSpikeFeature extends IceSpikeFeature {
+    public ImprovedIceSpikeFeature(Codec<NoneFeatureConfiguration> codec) {
         super(codec);
     }
 
     @Override
-    public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> context)
-    {
+    public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> context) {
         final WorldGenLevel level = context.level();
         BlockPos pos = context.origin();
-        while (level.isEmptyBlock(pos) && pos.getY() > level.getMinBuildHeight() + 2)
-        {
+        while (level.isEmptyBlock(pos) && pos.getY() > level.getMinBuildHeight() + 2) {
             pos = pos.below();
         }
         final BlockState originalState = level.getBlockState(pos);
-        if (!originalState.is(BlockTags.LEAVES) && !originalState.is(BlockTags.LOGS))
-        {
+        if (!originalState.is(BlockTags.LEAVES) && !originalState.is(BlockTags.LOGS)) {
             level.setBlock(pos, Blocks.SNOW_BLOCK.defaultBlockState(), 2);
         }
         return super.place(context);

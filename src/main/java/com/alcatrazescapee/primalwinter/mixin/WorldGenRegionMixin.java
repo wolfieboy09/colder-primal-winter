@@ -15,20 +15,16 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
 
 @Mixin(WorldGenRegion.class)
-public abstract class WorldGenRegionMixin
-{
+public abstract class WorldGenRegionMixin {
     @Shadow @Final private ServerLevel level;
 
     @ModifyVariable(method = "setBlock", at = @At("HEAD"), argsOnly = true, ordinal = 0)
-    private BlockState replaceAllBlocksWithSnowyOnes(BlockState stateIn)
-    {
-        if (!XPlatform.INSTANCE.config().isWinterDimension(level.dimension()))
-        {
+    private BlockState replaceAllBlocksWithSnowyOnes(BlockState stateIn) {
+        if (!XPlatform.INSTANCE.config().isWinterDimension(level.dimension())) {
             return stateIn;
         }
         final Supplier<? extends Block> block = PrimalWinterBlocks.SNOWY_DIRECT_REPLACEMENT_BLOCKS.get(stateIn.getBlock());
-        if (block == null)
-        {
+        if (block == null) {
             return stateIn;
         }
         final BlockState replacementState = block.get().defaultBlockState();

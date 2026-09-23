@@ -43,8 +43,7 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 import net.neoforged.neoforge.registries.NeoForgeRegistries;
 
 @Mod(PrimalWinter.MOD_ID)
-public final class ForgePrimalWinter
-{
+public final class ForgePrimalWinter {
     public static final ModContainer MOD = ModList.get()
         .getModContainerById(PrimalWinter.MOD_ID)
         .orElseThrow();
@@ -57,8 +56,7 @@ public final class ForgePrimalWinter
         PlacedFeature.LIST_CODEC.fieldOf("top_layer_modification").forGetter(c -> c.topLayerModification)
     ).apply(instance, Instance::new)));
 
-    public ForgePrimalWinter()
-    {
+    public ForgePrimalWinter() {
         PrimalWinter.earlySetup();
 
         EVENT_BUS.addListener((FMLCommonSetupEvent event) -> PrimalWinter.lateSetup());
@@ -66,8 +64,7 @@ public final class ForgePrimalWinter
             final PayloadRegistrar register = event.registrar(ModList.get().getModFileById(PrimalWinter.MOD_ID).versionString());
             PrimalWinter.networkingSetup(new NetworkSetupCallback() {
                 @Override
-                public <T extends CustomPacketPayload> void registerS2C(CustomPacketPayload.Type<T> type, StreamCodec<ByteBuf, T> codec, Consumer<T> handler)
-                {
+                public <T extends CustomPacketPayload> void registerS2C(CustomPacketPayload.Type<T> type, StreamCodec<ByteBuf, T> codec, Consumer<T> handler) {
                     register.playToClient(type, codec, (payload, context) -> context.enqueueWork(() -> handler.accept(payload)));
                 }
             });
@@ -79,8 +76,7 @@ public final class ForgePrimalWinter
         NeoForge.EVENT_BUS.addListener((RegisterCommandsEvent event) -> EventHandler.registerCommands(event.getDispatcher()));
         NeoForge.EVENT_BUS.addListener((LevelEvent.Load event) -> EventHandler.setLevelToThunder(event.getLevel()));
         NeoForge.EVENT_BUS.addListener((PlayerEvent.PlayerLoggedInEvent event) -> {
-            if (event.getEntity() instanceof ServerPlayer player)
-            {
+            if (event.getEntity() instanceof ServerPlayer player) {
                 EventHandler.onPlayerJoinWorld(player);
             }
         });
@@ -90,8 +86,7 @@ public final class ForgePrimalWinter
         MOD.registerConfig(ModConfig.Type.COMMON, config.common);
         MOD.registerConfig(ModConfig.Type.CLIENT, config.client);
 
-        if (FMLLoader.getDist() == Dist.CLIENT)
-        {
+        if (FMLLoader.getDist() == Dist.CLIENT) {
             ForgePrimalWinterClient.setupClient();
         }
     }
@@ -100,13 +95,10 @@ public final class ForgePrimalWinter
         HolderSet<PlacedFeature> surfaceStructures,
         HolderSet<PlacedFeature> topLayerModification
     )
-        implements BiomeModifier
-    {
+        implements BiomeModifier {
         @Override
-        public void modify(Holder<Biome> biome, Phase phase, ModifiableBiomeInfo.BiomeInfo.Builder builder)
-        {
-            if (biome.unwrapKey().filter(XPlatform.INSTANCE.config()::isWinterBiome).isEmpty() || phase != Phase.MODIFY)
-            {
+        public void modify(Holder<Biome> biome, Phase phase, ModifiableBiomeInfo.BiomeInfo.Builder builder) {
+            if (biome.unwrapKey().filter(XPlatform.INSTANCE.config()::isWinterBiome).isEmpty() || phase != Phase.MODIFY) {
                 return;
             }
 
@@ -120,15 +112,13 @@ public final class ForgePrimalWinter
                 .waterFogColor(0x050533);
 
             final BiomeGenerationSettingsBuilder settings = builder.getGenerationSettings();
-            for (Holder<PlacedFeature> feature : surfaceStructures)
-            {
+            for (Holder<PlacedFeature> feature : surfaceStructures) {
                 settings.addFeature(GenerationStep.Decoration.SURFACE_STRUCTURES, feature);
             }
 
             settings.getFeatures(GenerationStep.Decoration.TOP_LAYER_MODIFICATION)
                 .removeIf(holder -> holder.unwrapKey().map(key -> key == MiscOverworldPlacements.FREEZE_TOP_LAYER).orElse(false));
-            for (Holder<PlacedFeature> feature : topLayerModification)
-            {
+            for (Holder<PlacedFeature> feature : topLayerModification) {
                 settings.addFeature(GenerationStep.Decoration.TOP_LAYER_MODIFICATION, feature);
             }
 
@@ -136,8 +126,7 @@ public final class ForgePrimalWinter
         }
 
         @Override
-        public MapCodec<? extends BiomeModifier> codec()
-        {
+        public MapCodec<? extends BiomeModifier> codec() {
             return CODEC.get();
         }
     }

@@ -16,24 +16,21 @@ import static net.minecraft.world.level.levelgen.placement.HeightmapPlacement.*;
 import static net.minecraft.world.level.levelgen.placement.InSquarePlacement.*;
 import static net.minecraft.world.level.levelgen.placement.RarityFilter.*;
 
-public final class BuiltinPlacedFeatures
-{
+public final class BuiltinPlacedFeatures {
     public static final ResourceKey<PlacedFeature> FREEZE_TOP_LAYER = key("freeze_top_layer");
     public static final ResourceKey<PlacedFeature> ICE_PATCH = key("ice_patch");
     public static final ResourceKey<PlacedFeature> ICE_SPIKES = key("ice_spikes");
     public static final ResourceKey<PlacedFeature> POWDER_SNOW_PATCH = key("powder_snow_patch");
     public static final ResourceKey<PlacedFeature> SNOW_PATCH = key("snow_patch");
 
-    private static ResourceKey<PlacedFeature> key(String id)
-    {
+    private static ResourceKey<PlacedFeature> key(String id) {
         return ResourceKey.create(Registries.PLACED_FEATURE, Helpers.identifier(id));
     }
 
     final BootstrapContext<PlacedFeature> context;
     final HolderGetter<ConfiguredFeature<?, ?>> configuredFeatures;
 
-    public BuiltinPlacedFeatures(BootstrapContext<PlacedFeature> context)
-    {
+    public BuiltinPlacedFeatures(BootstrapContext<PlacedFeature> context) {
         this.context = context;
         this.configuredFeatures = context.lookup(Registries.CONFIGURED_FEATURE);
 
@@ -57,8 +54,7 @@ public final class BuiltinPlacedFeatures
             biome());
     }
 
-    void register(ResourceKey<PlacedFeature> key, ResourceKey<ConfiguredFeature<?, ?>> feature, PlacementModifier... placements)
-    {
+    void register(ResourceKey<PlacedFeature> key, ResourceKey<ConfiguredFeature<?, ?>> feature, PlacementModifier... placements) {
         context.register(key, new PlacedFeature(configuredFeatures.getOrThrow(feature), List.of(placements)));
     }
 }

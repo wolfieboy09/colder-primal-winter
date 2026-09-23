@@ -15,18 +15,14 @@ import net.neoforged.neoforge.client.gui.ConfigurationScreen;
 import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
 import net.neoforged.neoforge.common.NeoForge;
 
-public final class ForgePrimalWinterClient
-{
-    public static void setupClient()
-    {
+public final class ForgePrimalWinterClient {
+    public static void setupClient() {
         ForgePrimalWinter.EVENT_BUS.addListener((FMLClientSetupEvent event) -> ClientEventHandler.setupClient());
         ForgePrimalWinter.EVENT_BUS.addListener((RegisterColorHandlersEvent.Block event) -> ClientEventHandler.setupBlockColors(event::register));
         ForgePrimalWinter.EVENT_BUS.addListener((RegisterColorHandlersEvent.Item event) -> ClientEventHandler.setupItemColors(event::register));
-        ForgePrimalWinter.EVENT_BUS.addListener((RegisterParticleProvidersEvent event) -> ClientEventHandler.setupParticleFactories(new ParticleProviderCallback()
-        {
+        ForgePrimalWinter.EVENT_BUS.addListener((RegisterParticleProvidersEvent event) -> ClientEventHandler.setupParticleFactories(new ParticleProviderCallback() {
             @Override
-            public <T extends ParticleOptions> void accept(ParticleType<T> type, Function<SpriteSet, ParticleProvider<T>> provider)
-            {
+            public <T extends ParticleOptions> void accept(ParticleType<T> type, Function<SpriteSet, ParticleProvider<T>> provider) {
                 event.registerSpriteSet(type, provider::apply);
             }
         }));

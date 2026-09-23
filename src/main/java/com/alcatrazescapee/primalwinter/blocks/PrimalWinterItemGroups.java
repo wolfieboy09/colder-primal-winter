@@ -12,8 +12,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.ItemLike;
 
 @SuppressWarnings("unused")
-public final class PrimalWinterItemGroups
-{
+public final class PrimalWinterItemGroups {
     public static final RegistryInterface<CreativeModeTab> TABS = XPlatform.INSTANCE.registryInterface(BuiltInRegistries.CREATIVE_MODE_TAB);
     public static final List<RegistryHolder<? extends ItemLike>> ENTRIES = new ArrayList<>();
 
@@ -21,8 +20,7 @@ public final class PrimalWinterItemGroups
         .icon(() -> new ItemStack(PrimalWinterBlocks.SNOWY_DIRT.get()))
         .title(Component.translatable("primalwinter.items"))
         .displayItems((params, output) -> {
-            for (RegistryHolder<? extends ItemLike> entry : ENTRIES)
-            {
+            for (RegistryHolder<? extends ItemLike> entry : ENTRIES) {
                 output.accept(entry.get());
             }
         })

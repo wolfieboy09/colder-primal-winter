@@ -10,28 +10,22 @@ import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.CactusBlock;
 import net.minecraft.world.level.block.state.BlockState;
 
-public class SnowyCactusBlock extends CactusBlock
-{
-    public SnowyCactusBlock(Properties properties)
-    {
+public class SnowyCactusBlock extends CactusBlock {
+    public SnowyCactusBlock(Properties properties) {
         super(properties);
     }
 
     @Override
-    protected void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random)
-    {
+    protected void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
         // No random ticks, frozen plants don't grow
     }
 
     @Override
     @SuppressWarnings("deprecation")
-    protected boolean canSurvive(BlockState state, LevelReader level, BlockPos pos)
-    {
-        for (Direction direction : Direction.Plane.HORIZONTAL)
-        {
+    protected boolean canSurvive(BlockState state, LevelReader level, BlockPos pos) {
+        for (Direction direction : Direction.Plane.HORIZONTAL) {
             final BlockState adjacentState = level.getBlockState(pos.relative(direction));
-            if (adjacentState.isSolid() || level.getFluidState(pos.relative(direction)).is(FluidTags.LAVA))
-            {
+            if (adjacentState.isSolid() || level.getFluidState(pos.relative(direction)).is(FluidTags.LAVA)) {
                 return false;
             }
         }

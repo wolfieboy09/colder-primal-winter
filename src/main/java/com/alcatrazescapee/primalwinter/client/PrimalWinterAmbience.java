@@ -10,8 +10,7 @@ import com.alcatrazescapee.primalwinter.platform.RegistryInterface;
 import com.alcatrazescapee.primalwinter.platform.XPlatform;
 import com.alcatrazescapee.primalwinter.util.Helpers;
 
-public final class PrimalWinterAmbience
-{
+public final class PrimalWinterAmbience {
     public static final RegistryInterface<ParticleType<?>> PARTICLE_TYPES = XPlatform.INSTANCE.registryInterface(BuiltInRegistries.PARTICLE_TYPE);
     public static final RegistryInterface<SoundEvent> SOUND_EVENTS = XPlatform.INSTANCE.registryInterface(BuiltInRegistries.SOUND_EVENT);
 

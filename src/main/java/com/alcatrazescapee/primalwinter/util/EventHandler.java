@@ -22,16 +22,13 @@ import net.minecraft.world.level.chunk.LevelChunk;
 import net.minecraft.world.level.levelgen.Heightmap;
 import org.slf4j.Logger;
 
-public final class EventHandler
-{
+public final class EventHandler {
     private static final Logger LOGGER = LogUtils.getLogger();
 
-    public static void registerCommands(CommandDispatcher<CommandSourceStack> dispatcher)
-    {
+    public static void registerCommands(CommandDispatcher<CommandSourceStack> dispatcher) {
         final boolean enable = XPlatform.INSTANCE.config().enableWeatherCommand.getAsBoolean();
         LOGGER.info("Vanilla /weather enabled = {}", enable);
-        if (!enable)
-        {
+        if (!enable) {
             // Vanilla weather command... NOT ALLOWED
             dispatcher.getRoot().getChildren().removeIf(node -> node.getName().equals("weather"));
             dispatcher.register(Commands.literal("weather").executes(source -> {
@@ -44,32 +41,26 @@ public final class EventHandler
     /**
      * During {@link ServerLevel#tickChunk(LevelChunk, int)}, places additional snow layers
      */
-    public static void placeExtraSnow(ServerLevel level, ChunkAccess chunk)
-    {
+    public static void placeExtraSnow(ServerLevel level, ChunkAccess chunk) {
         if (XPlatform.INSTANCE.config().isWinterDimension(level.dimension()) &&
             XPlatform.INSTANCE.config().enableSnowAccumulationDuringWeather.getAsBoolean() &&
-            level.random.nextInt(16) == 0)
-        {
+            level.random.nextInt(16) == 0) {
             final int blockX = chunk.getPos().getMinBlockX();
             final int blockZ = chunk.getPos().getMinBlockZ();
             final BlockPos pos = level.getHeightmapPos(Heightmap.Types.MOTION_BLOCKING, level.getBlockRandomPos(blockX, 0, blockZ, 15));
             final BlockState state = level.getBlockState(pos);
-            if (level.getBrightness(LightLayer.BLOCK, pos) < 10)
-            {
-                if (state.getBlock() == Blocks.SNOW)
-                {
+            if (level.getBrightness(LightLayer.BLOCK, pos) < 10) {
+                if (state.getBlock() == Blocks.SNOW) {
                     // Stack snow layers
                     final int layers = state.getValue(BlockStateProperties.LAYERS);
-                    if (layers < 5)
-                    {
+                    if (layers < 5) {
                         level.setBlockAndUpdate(pos, state.setValue(BlockStateProperties.LAYERS, 1 + layers));
                     }
 
                     final BlockPos belowPos = pos.below();
                     final BlockState belowState = level.getBlockState(belowPos);
                     final Block replacementBlock = PrimalWinterBlocks.SNOWY_TERRAIN_BLOCKS.getOrDefault(belowState.getBlock(), () -> null).get();
-                    if (replacementBlock != null)
-                    {
+                    if (replacementBlock != null) {
                         level.setBlockAndUpdate(belowPos, replacementBlock.defaultBlockState());
                     }
                 }
@@ -77,10 +68,8 @@ public final class EventHandler
         }
     }
 
-    public static void setLevelToThunder(LevelAccessor maybeLevel)
-    {
-        if (maybeLevel instanceof ServerLevel level && XPlatform.INSTANCE.config().isWinterDimension(level.dimension()))
-        {
+    public static void setLevelToThunder(LevelAccessor maybeLevel) {
+        if (maybeLevel instanceof ServerLevel level && XPlatform.INSTANCE.config().isWinterDimension(level.dimension())) {
             NewWorldSavedData.onlyForNewWorlds(level, () -> {
                 LOGGER.info("Modifying weather for world {}", level.dimension().location());
                 level.setWeatherParameters(0, Integer.MAX_VALUE, true, true);  // Copied from WeatherCommand
@@ -89,8 +78,7 @@ public final class EventHandler
         }
     }
 
-    public static void onPlayerJoinWorld(ServerPlayer player)
-    {
+    public static void onPlayerJoinWorld(ServerPlayer player) {
         XPlatform.INSTANCE.config().syncTo(player);
     }
 }

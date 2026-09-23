@@ -5,8 +5,7 @@ import java.util.function.Supplier;
 /**
  * @param <T> The type of the registry
  */
-public interface RegistryInterface<T>
-{
+public interface RegistryInterface<T> {
     default void earlySetup() {}
 
     default void lateSetup() {}

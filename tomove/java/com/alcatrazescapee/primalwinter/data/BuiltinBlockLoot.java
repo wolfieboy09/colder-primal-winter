@@ -14,16 +14,13 @@ import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 
 import static com.alcatrazescapee.primalwinter.blocks.PrimalWinterBlocks.*;
 
-public final class BuiltinBlockLoot extends BlockLootSubProvider
-{
-    public BuiltinBlockLoot(HolderLookup.Provider lookup)
-    {
+public final class BuiltinBlockLoot extends BlockLootSubProvider {
+    public BuiltinBlockLoot(HolderLookup.Provider lookup) {
         super(Collections.emptySet(), FeatureFlags.REGISTRY.allFlags(), lookup);
     }
 
     @Override
-    protected void generate()
-    {
+    protected void generate() {
         dropOther(SNOWY_DIRT.get(), Blocks.DIRT);
         dropOther(SNOWY_COARSE_DIRT.get(), Blocks.COARSE_DIRT);
         dropOther(SNOWY_SAND.get(), Blocks.SAND);
@@ -73,8 +70,7 @@ public final class BuiltinBlockLoot extends BlockLootSubProvider
     }
 
     @Override
-    protected Iterable<Block> getKnownBlocks()
-    {
+    protected Iterable<Block> getKnownBlocks() {
         return ((ForgeRegistryInterface<Block>) PrimalWinterBlocks.BLOCKS).deferred.getEntries().stream().map(Holder::value).toList();
     }
 }
