@@ -160,7 +160,6 @@ public class PrimalWinterBlocks {
     private static <T extends Block> DeferredBlock<T> register(String name, Supplier<T> blockFactory) {
         final DeferredBlock<T> block = BLOCKS.register(name, blockFactory);
         ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties()));
-        //PrimalWinterItemGroups.ENTRIES.add(block);
         return block;
     }
 }
