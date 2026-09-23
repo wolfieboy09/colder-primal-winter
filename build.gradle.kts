@@ -111,18 +111,25 @@ val generateModMetadata by tasks.registering(ProcessResources::class) {
         "mod_credits" to project.findProperty("mod_credits") as String,
         "mod_description" to project.findProperty("mod_description") as String,
     )
+
     inputs.properties(replaceProperties)
     expand(replaceProperties)
-    filesMatching("**/*.java") {
-        exclude()
-    }
 
     from("src/main/templates")
-    into("build/resources")
+    into("build/generated/resources")
 }
 
-sourceSets["main"].resources.srcDir(generateModMetadata)
+tasks.named<ProcessResources>("processResources") {
+    dependsOn(generateModMetadata)
+}
+
+tasks.named("createMinecraftArtifacts") {
+    dependsOn(generateModMetadata)
+}
+
+sourceSets["main"].resources.srcDir("build/generated/resources")
 neoForge.ideSyncTask(generateModMetadata)
+
 
 
 java {

@@ -1,7 +1,7 @@
 package com.alcatrazescapee.primalwinter.mixin;
 
-import com.alcatrazescapee.primalwinter.PrimalWinterUtil;
-import com.alcatrazescapee.primalwinter.config.StartupConfig;
+import com.alcatrazescapee.primalwinter.util.PrimalWinterUtil;
+import com.alcatrazescapee.primalwinter.config.ServerConfig;
 import com.alcatrazescapee.primalwinter.registries.PrimalWinterBlocks;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.WorldGenRegion;
@@ -24,7 +24,7 @@ public abstract class WorldGenRegionMixin implements WorldGenLevel {
 
     @ModifyVariable(method = "setBlock", at = @At("HEAD"), argsOnly = true, ordinal = 0)
     private BlockState replaceAllBlocksWithSnowyOnes(BlockState stateIn) {
-        if (!StartupConfig.winterDimensions().contains(level.dimension())) {
+        if (!ServerConfig.WINTER_DIMENSIONS.get().contains(level.dimension().location().toString())) {
             return stateIn;
         }
         final Supplier<? extends Block> block = PrimalWinterBlocks.SNOWY_DIRECT_REPLACEMENT_BLOCKS.get(stateIn.getBlock());
