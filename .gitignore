@@ -1,21 +1,25 @@
-*
-!*/
+# eclipse
+bin
+*.launch
+.settings
+.metadata
+.classpath
+.project
 
-!/.github/**/*.yml
+# idea
+out
+*.ipr
+*.iws
+*.iml
+.idea
 
-!/gradle/wrapper/gradle-wrapper.jar
-!/gradle/wrapper/gradle-wrapper.properties
+# gradle
+build
+.gradle
 
-!/**/build.gradle.kts
-!/**/src/**/*.*
-!/Common/generated/resources/data/**/*.*
-
-!/img/**/*.png
-
-!/.gitignore
-!/gradle.properties
-!/settings.gradle.kts
-!/gradlew
-!/gradlew.bat
-!/LICENSE
-!/README.md
+# other
+eclipse
+run
+Icon*
+/runs
+/src/generated/resources/.cache

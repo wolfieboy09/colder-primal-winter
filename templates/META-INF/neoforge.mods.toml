@@ -1,0 +1,30 @@
+modLoader="javafml"
+loaderVersion="${loader_version_range}"
+license="MIT"
+issueTrackerURL="https://github.com/wolfieboy09/colder-primal-winter/issues"
+
+[[mods]]
+modId="primalwinter"
+version="${mod_version}"
+displayName="${mod_name}"
+authors="${mod_authors}"
+logoFile= "logo.png"
+
+description='''${mod_description}'''
+
+[[dependencies.primalwinter]]
+modId="neoforge"
+type="required"
+versionRange="${neo_version_range}"
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.primalwinter]]
+modId="minecraft"
+type="required"
+versionRange="${minecraft_version_range}"
+ordering="NONE"
+side="BOTH"
+
+[[mixins]]
+config = "primalwinter.mixins.json"

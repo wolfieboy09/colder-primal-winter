@@ -2,23 +2,20 @@ pluginManagement {
     repositories {
         gradlePluginPortal()
         mavenCentral()
-        exclusiveContent {
-            forRepository { maven("https://maven.fabricmc.net") }
-            filter {
-                includeGroup("net.fabricmc")
-                includeGroup("fabric-loom")
+        maven("https://maven.minecraftforge.net/")
+        maven("https://maven.parchmentmc.org")
+        maven("https://repo.spongepowered.org/repository/maven-public/")
+        maven("https://maven.neoforged.net/releases")
+    }
+    resolutionStrategy {
+        eachPlugin {
+            if (requested.id.id == "org.spongepowered.mixin") {
+                useModule("org.spongepowered:mixingradle:0.7-SNAPSHOT")
             }
-        }
-        exclusiveContent {
-            forRepository { maven("https://maven.neoforged.net/releases") }
-            filter { includeGroupAndSubgroups("net.neoforged") }
         }
     }
 }
 
 plugins {
-    id("org.gradle.toolchains.foojay-resolver-convention") version "0.8.0"
+    id("org.gradle.toolchains.foojay-resolver-convention") version "1.0.0"
 }
-
-rootProject.name = "PrimalWinter-1.21"
-include("Common", "Fabric", "NeoForge")

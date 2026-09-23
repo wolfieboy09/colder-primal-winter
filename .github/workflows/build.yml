@@ -49,16 +49,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./NeoForge/build/libs/primalwinter-neoforge-1.21.1-${{ steps.get_version.outputs.result }}.jar
+          asset_path: ./build/libs/primalwinter-neoforge-1.21.1-${{ steps.get_version.outputs.result }}.jar
           asset_name: primalwinter-neoforge-1.21.1-${{ steps.get_version.outputs.result }}.jar
-          asset_content_type: application/java-archive
-      - name: Upload Fabric Jar
-        id: upload_fabric_jar
-        uses: actions/upload-release-asset@v1.0.1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./Fabric/build/libs/primalwinter-fabric-1.21.1-${{ steps.get_version.outputs.result }}.jar
-          asset_name: primalwinter-fabric-1.21.1-${{ steps.get_version.outputs.result }}.jar
           asset_content_type: application/java-archive
