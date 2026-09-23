@@ -1,4 +1,4 @@
-package com.alcatrazescapee.primalwinter.features;
+package com.alcatrazescapee.primalwinter.world.features;
 
 import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;

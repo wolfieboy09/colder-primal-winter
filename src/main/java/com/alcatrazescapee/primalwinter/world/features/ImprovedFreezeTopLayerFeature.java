@@ -1,4 +1,4 @@
-package com.alcatrazescapee.primalwinter.features;
+package com.alcatrazescapee.primalwinter.world.features;
 
 import com.alcatrazescapee.primalwinter.config.ServerConfig;
 import com.alcatrazescapee.primalwinter.registries.PrimalWinterBlockTags;

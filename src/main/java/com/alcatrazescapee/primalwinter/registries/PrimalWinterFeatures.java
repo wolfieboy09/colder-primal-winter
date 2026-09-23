@@ -1,8 +1,8 @@
 package com.alcatrazescapee.primalwinter.registries;
 
 import com.alcatrazescapee.primalwinter.PrimalWinter;
-import com.alcatrazescapee.primalwinter.features.ImprovedFreezeTopLayerFeature;
-import com.alcatrazescapee.primalwinter.features.ImprovedIceSpikeFeature;
+import com.alcatrazescapee.primalwinter.world.features.ImprovedFreezeTopLayerFeature;
+import com.alcatrazescapee.primalwinter.world.features.ImprovedIceSpikeFeature;
 import com.mojang.serialization.Codec;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.registries.Registries;

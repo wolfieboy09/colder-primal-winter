@@ -12,7 +12,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(DimensionSpecialEffects.class)
 public abstract class DimensionSpecialEffectsMixin implements IDimensionSpecialEffectsExtension {
-    @SuppressWarnings("ConstantConditions")
     @Inject(method = "getSunriseColor", at = @At("RETURN"), cancellable = true)
     private void noSunriseColor(float timeOfDay, float partialTicks, CallbackInfoReturnable<float[]> cir) {
         final float[] original = cir.getReturnValue();

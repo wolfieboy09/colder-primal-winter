@@ -30,7 +30,7 @@ public final class ServerConfig {
         enableWeatherCommand = BUILDER
                 .comment("", " Should the vanilla /weather be disabled?")
                 .translation(key("enableWeatherCommand"))
-                .gameRestart()
+                .worldRestart()
                 .define("enableWeatherCommand", false);
 
         enableSnowAccumulationDuringWorldgen = BUILDER

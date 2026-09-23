@@ -9,6 +9,7 @@ import com.alcatrazescapee.primalwinter.registries.PrimalWinterBlocks;
 import com.alcatrazescapee.primalwinter.registries.PrimalWinterFeatures;
 import com.alcatrazescapee.primalwinter.registries.PrimalWinterItemGroups;
 import com.alcatrazescapee.primalwinter.util.WinterBiomes;
+import com.alcatrazescapee.primalwinter.registries.PrimalWinterBiomeModifier;
 import com.mojang.logging.LogUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.resources.ResourceLocation;
@@ -41,6 +42,7 @@ public class PrimalWinter {
         PrimalWinterFeatures.FEATURES.register(bus);
         PrimalWinterAmbience.PARTICLE_TYPES.register(bus);
         PrimalWinterAmbience.SOUND_EVENTS.register(bus);
+        PrimalWinterBiomeModifier.BIOME_MODIFIERS.register(bus);
     }
 
     public static ResourceLocation id(String name) {
