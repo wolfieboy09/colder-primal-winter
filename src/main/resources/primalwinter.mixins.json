@@ -4,6 +4,7 @@
   "package": "com.alcatrazescapee.primalwinter.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
+    "CatSpawnerMixin",
     "ServerLevelMixin",
     "ServerLifecycleHooksMixin",
     "SurfaceSystemMixin",
