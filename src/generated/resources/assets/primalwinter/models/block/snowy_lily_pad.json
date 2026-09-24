@@ -1,5 +1,6 @@
 {
   "parent": "minecraft:block/lily_pad",
+  "render_type": "minecraft:cutout",
   "textures": {
     "particle": "primalwinter:block/snowy_lily_pad",
     "texture": "primalwinter:block/snowy_lily_pad"

@@ -1,5 +1,6 @@
 {
   "parent": "primalwinter:block/snowy_leaves",
+  "render_type": "minecraft:cutout_mipped",
   "textures": {
     "all": "minecraft:block/jungle_leaves",
     "overlay": "primalwinter:block/snowy_leaves_overlay"

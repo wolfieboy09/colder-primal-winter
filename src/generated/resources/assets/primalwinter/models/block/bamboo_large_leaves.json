@@ -1,5 +1,6 @@
 {
   "parent": "minecraft:block/bamboo_large_leaves",
+  "render_type": "minecraft:cutout",
   "textures": {
     "particle": "primalwinter:block/snowy_bamboo_large_leaves",
     "texture": "primalwinter:block/snowy_bamboo_large_leaves"
