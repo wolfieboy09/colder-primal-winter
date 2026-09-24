@@ -1,11 +1,7 @@
 package com.alcatrazescapee.primalwinter.registries;
 
 import com.alcatrazescapee.primalwinter.PrimalWinter;
-import com.alcatrazescapee.primalwinter.content.block.SnowyCactusBlock;
-import com.alcatrazescapee.primalwinter.content.block.FrozenBeehiveBlock;
-import com.alcatrazescapee.primalwinter.content.block.SnowyBambooBlock;
-import com.alcatrazescapee.primalwinter.content.block.SnowySugarCaneBlock;
-import com.alcatrazescapee.primalwinter.content.block.SnowyVineBlock;
+import com.alcatrazescapee.primalwinter.content.block.*;
 import com.google.common.collect.ImmutableMap;
 import net.minecraft.util.ColorRGBA;
 import net.minecraft.world.item.BlockItem;

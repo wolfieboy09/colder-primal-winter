@@ -1,23 +1,17 @@
 package com.alcatrazescapee.primalwinter.data;
 
-import java.util.List;
-import java.util.function.Function;
 import com.mojang.datafixers.util.Pair;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.data.worldgen.BootstrapContext;
-import net.minecraft.data.worldgen.DesertVillagePools;
-import net.minecraft.data.worldgen.PlainVillagePools;
-import net.minecraft.data.worldgen.Pools;
-import net.minecraft.data.worldgen.ProcessorLists;
-import net.minecraft.data.worldgen.SavannaVillagePools;
-import net.minecraft.data.worldgen.SnowyVillagePools;
-import net.minecraft.data.worldgen.TaigaVillagePools;
+import net.minecraft.data.worldgen.*;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.levelgen.structure.pools.StructurePoolElement;
 import net.minecraft.world.level.levelgen.structure.pools.StructureTemplatePool;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureProcessorList;
+
+import java.util.List;
+import java.util.function.Function;
 
 /**
  * Modified from {@link net.minecraft.data.worldgen.VillagePools}, but modified to only include zombie villages

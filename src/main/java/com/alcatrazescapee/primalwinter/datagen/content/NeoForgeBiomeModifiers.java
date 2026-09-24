@@ -1,8 +1,8 @@
 package com.alcatrazescapee.primalwinter.datagen.content;
 
 import com.alcatrazescapee.primalwinter.PrimalWinter;
-import com.alcatrazescapee.primalwinter.registries.PrimalWinterFeatures;
 import com.alcatrazescapee.primalwinter.registries.PrimalWinterBiomeModifier;
+import com.alcatrazescapee.primalwinter.registries.PrimalWinterFeatures;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.HolderSet;

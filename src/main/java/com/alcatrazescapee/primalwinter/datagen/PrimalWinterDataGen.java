@@ -1,7 +1,9 @@
 package com.alcatrazescapee.primalwinter.datagen;
 
 import com.alcatrazescapee.primalwinter.PrimalWinter;
-import com.alcatrazescapee.primalwinter.data.*;
+import com.alcatrazescapee.primalwinter.data.BuiltinPlacedFeatures;
+import com.alcatrazescapee.primalwinter.data.BuiltinTemplatePools;
+import com.alcatrazescapee.primalwinter.data.PrimalWinterFeatures;
 import com.alcatrazescapee.primalwinter.datagen.content.*;
 import net.minecraft.core.RegistrySetBuilder;
 import net.minecraft.core.registries.Registries;

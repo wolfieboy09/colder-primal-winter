@@ -1,8 +1,8 @@
 package com.alcatrazescapee.primalwinter.mixin;
 
-import com.alcatrazescapee.primalwinter.util.PrimalWinterUtil;
 import com.alcatrazescapee.primalwinter.config.ServerConfig;
 import com.alcatrazescapee.primalwinter.registries.PrimalWinterBlocks;
+import com.alcatrazescapee.primalwinter.util.PrimalWinterUtil;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.WorldGenRegion;
 import net.minecraft.world.level.WorldGenLevel;

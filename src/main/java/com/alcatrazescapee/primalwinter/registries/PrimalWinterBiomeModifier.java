@@ -11,11 +11,7 @@ import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
-import net.neoforged.neoforge.common.world.BiomeGenerationSettingsBuilder;
-import net.neoforged.neoforge.common.world.BiomeModifier;
-import net.neoforged.neoforge.common.world.ClimateSettingsBuilder;
-import net.neoforged.neoforge.common.world.MobSpawnSettingsBuilder;
-import net.neoforged.neoforge.common.world.ModifiableBiomeInfo;
+import net.neoforged.neoforge.common.world.*;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.neoforged.neoforge.registries.NeoForgeRegistries;
 

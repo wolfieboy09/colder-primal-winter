@@ -7,8 +7,8 @@ import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.common.data.BlockTagsProvider;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
 
-import static com.alcatrazescapee.primalwinter.registries.PrimalWinterBlocks.*;
 import static com.alcatrazescapee.primalwinter.registries.PrimalWinterBlockTags.*;
+import static com.alcatrazescapee.primalwinter.registries.PrimalWinterBlocks.*;
 
 public final class BuiltinBlockTags extends BlockTagsProvider {
     public BuiltinBlockTags(GatherDataEvent event) {
