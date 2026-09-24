@@ -10,12 +10,10 @@ import com.alcatrazescapee.primalwinter.registries.PrimalWinterBlocks;
 import com.alcatrazescapee.primalwinter.registries.PrimalWinterFeatures;
 import com.alcatrazescapee.primalwinter.registries.PrimalWinterItemGroups;
 import com.alcatrazescapee.primalwinter.util.ConfigPacket;
-import com.alcatrazescapee.primalwinter.util.WinterBiomes;
 import com.mojang.logging.LogUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
-import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModContainer;
@@ -28,7 +26,6 @@ import net.neoforged.fml.loading.FMLEnvironment;
 import net.neoforged.neoforge.client.gui.ConfigurationScreen;
 import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
-import net.neoforged.neoforge.event.server.ServerAboutToStartEvent;
 import net.neoforged.neoforge.network.PacketDistributor;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
 import net.neoforged.neoforge.network.registration.PayloadRegistrar;
@@ -66,11 +63,6 @@ public class PrimalWinter {
             // Sync the server's winter dimension list to the client, since server configs are never loaded client-side
             PacketDistributor.sendToPlayer(player, new ConfigPacket(ServerConfig.winterDimensions()));
         }
-    }
-
-    @SubscribeEvent(priority = EventPriority.LOWEST)
-    public static void onServerAboutToStart(ServerAboutToStartEvent event) {
-        WinterBiomes.load(event.getServer());
     }
 
     @SubscribeEvent

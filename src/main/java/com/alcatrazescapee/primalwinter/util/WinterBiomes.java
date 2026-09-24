@@ -17,9 +17,10 @@ public final class WinterBiomes {
      * Populates the set of winter biomes by scanning every dimension marked as a winter
      * dimension in {@link ServerConfig}, and collecting all biomes their biome source can generate.
      * <p>
-     * Must run after TerraBlender's own worldgen modifications and after {@link ServerConfig}'s
-     * dimension list is loaded, but before NeoForge's biome modifiers run - see
-     * {@code ServerLifecycleHooksMixin} for why this can't just be a normal event listener.
+     * Must run after {@link ServerConfig}'s dimension list is loaded, but before NeoForge's biome
+     * modifiers run. NeoForge applies those modifiers in {@code ServerLifecycleHooks.handleServerAboutToStart()},
+     * just before {@code ServerAboutToStartEvent} is posted, so this is injected at that point - see
+     * {@code ServerLifecycleHooksMixin}. It does not reorder any of NeoForge's events.
      */
     public static void load(MinecraftServer server) {
         winterBiomesView = server.registryAccess()

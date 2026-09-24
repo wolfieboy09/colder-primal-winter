@@ -5,6 +5,7 @@
   "compatibilityLevel": "JAVA_21",
   "mixins": [
     "ServerLevelMixin",
+    "ServerLifecycleHooksMixin",
     "SurfaceSystemMixin",
     "WorldGenRegionMixin",
     "accessor.AxeItemAccessor"
