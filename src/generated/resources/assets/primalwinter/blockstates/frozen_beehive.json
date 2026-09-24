@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "primalwinter:block/frozen_beehive",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "primalwinter:block/frozen_beehive"
+    },
+    "facing=south": {
+      "model": "primalwinter:block/frozen_beehive",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "primalwinter:block/frozen_beehive",
+      "y": 270
+    }
+  }
+}

@@ -2,6 +2,7 @@ package com.alcatrazescapee.primalwinter.registries;
 
 import com.alcatrazescapee.primalwinter.PrimalWinter;
 import com.alcatrazescapee.primalwinter.content.block.SnowyCactusBlock;
+import com.alcatrazescapee.primalwinter.content.block.FrozenBeehiveBlock;
 import com.alcatrazescapee.primalwinter.mixin.accessor.AxeItemAccessor;
 import com.alcatrazescapee.primalwinter.content.block.SnowyBambooBlock;
 import com.alcatrazescapee.primalwinter.content.block.SnowySugarCaneBlock;
@@ -80,6 +81,8 @@ public class PrimalWinterBlocks {
     public static final DeferredBlock<Block> SNOWY_RED_MUSHROOM_BLOCK = register("snowy_red_mushroom_block", () -> new HugeMushroomBlock(ofFullCopy(Blocks.RED_MUSHROOM_BLOCK)));
     public static final DeferredBlock<Block> SNOWY_MUSHROOM_STEM = register("snowy_mushroom_stem", () -> new HugeMushroomBlock(ofFullCopy(Blocks.MUSHROOM_STEM)));
 
+    public static final DeferredBlock<Block> FROZEN_BEEHIVE = register("frozen_beehive", () -> new FrozenBeehiveBlock(ofFullCopy(Blocks.BEE_NEST)));
+
     public static final Map<Block, Supplier<Block>> SNOWY_TERRAIN_BLOCKS = new HashMap<>(new ImmutableMap.Builder<Block, Supplier<Block>>()
             .put(Blocks.DIRT, SNOWY_DIRT)
             .put(Blocks.GRASS_BLOCK, SNOWY_DIRT)
@@ -138,6 +141,7 @@ public class PrimalWinterBlocks {
             .put(Blocks.BROWN_MUSHROOM_BLOCK, SNOWY_BROWN_MUSHROOM_BLOCK)
             .put(Blocks.RED_MUSHROOM_BLOCK, SNOWY_RED_MUSHROOM_BLOCK)
             .put(Blocks.MUSHROOM_STEM, SNOWY_MUSHROOM_STEM)
+            .put(Blocks.BEE_NEST, FROZEN_BEEHIVE)
             .build();
 
     public static final Map<Supplier<? extends Block>, Supplier<? extends Block>> SNOWY_LOG_STRIPPING_BLOCKS = new ImmutableMap.Builder<Supplier<? extends Block>, Supplier<? extends Block>>()

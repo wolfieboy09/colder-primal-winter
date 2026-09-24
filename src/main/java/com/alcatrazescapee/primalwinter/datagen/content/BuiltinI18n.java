@@ -88,6 +88,7 @@ public class BuiltinI18n extends LanguageProvider {
         addBlock(SNOWY_BROWN_MUSHROOM_BLOCK, "Frosted Brown Mushroom Block");
         addBlock(SNOWY_RED_MUSHROOM_BLOCK, "Frosted Red Mushroom Block");
         addBlock(SNOWY_MUSHROOM_STEM, "Frosted Mushroom Stem");
+        addBlock(FROZEN_BEEHIVE, "Frozen Beehive");
 
         add(PrimalWinterBlockTags.REPLACEABLE_WITH_SNOW, "Replaceable With Snow");
         add(PrimalWinterBlockTags.REPLACEABLE_WITH_SNOWY_STUFF, "Replaceable With Snowy Stuff");

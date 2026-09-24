@@ -93,6 +93,14 @@ public final class BuiltinModels extends BlockStateProvider {
         mushroomBlock(SNOWY_BROWN_MUSHROOM_BLOCK);
         mushroomBlock(SNOWY_RED_MUSHROOM_BLOCK);
         mushroomBlock(SNOWY_MUSHROOM_STEM);
+        final ModelFile frozenBeehiveModel = models().orientableWithBottom(name(FROZEN_BEEHIVE),
+                modLoc("block/frozen_bee_nest_side"),
+                modLoc("block/frozen_bee_nest_front"),
+                modLoc("block/frozen_bee_nest_bottom"),
+                modLoc("block/frozen_bee_nest_top"))
+                .texture("particle", modLoc("block/frozen_bee_nest_side"));
+        horizontalBlock(FROZEN_BEEHIVE.get(), frozenBeehiveModel);
+        simpleBlockItem(FROZEN_BEEHIVE.get(), frozenBeehiveModel);
     }
 
     void snowyBlock(Supplier<Block> block) {

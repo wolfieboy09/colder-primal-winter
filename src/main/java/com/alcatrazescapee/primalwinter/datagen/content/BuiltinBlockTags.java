@@ -160,7 +160,8 @@ public final class BuiltinBlockTags extends BlockTagsProvider {
                 SNOWY_BROWN_MUSHROOM_BLOCK.get(),
                 SNOWY_RED_MUSHROOM_BLOCK.get(),
                 SNOWY_MUSHROOM_STEM.get(),
-                SNOWY_LILY_PAD.get());
+                SNOWY_LILY_PAD.get(),
+                FROZEN_BEEHIVE.get());
         tag(BlockTags.MINEABLE_WITH_SHOVEL).add(
                 SNOWY_DIRT.get(),
                 SNOWY_COARSE_DIRT.get(),

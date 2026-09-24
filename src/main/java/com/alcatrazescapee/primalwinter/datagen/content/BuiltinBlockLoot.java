@@ -74,5 +74,6 @@ public final class BuiltinBlockLoot extends BlockLootSubProvider {
         add(SNOWY_BROWN_MUSHROOM_BLOCK.get(), b -> createMushroomBlockDrop(b, Items.BROWN_MUSHROOM));
         add(SNOWY_RED_MUSHROOM_BLOCK.get(), b -> createMushroomBlockDrop(b, Items.RED_MUSHROOM));
         otherWhenSilkTouch(SNOWY_MUSHROOM_STEM.get(), Blocks.MUSHROOM_STEM);
+        dropOther(FROZEN_BEEHIVE.get(), Blocks.BEE_NEST);
     }
 }

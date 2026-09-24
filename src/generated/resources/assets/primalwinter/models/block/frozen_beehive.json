@@ -1,0 +1,10 @@
+{
+  "parent": "minecraft:block/orientable_with_bottom",
+  "textures": {
+    "bottom": "primalwinter:block/frozen_bee_nest_bottom",
+    "front": "primalwinter:block/frozen_bee_nest_front",
+    "particle": "primalwinter:block/frozen_bee_nest_side",
+    "side": "primalwinter:block/frozen_bee_nest_side",
+    "top": "primalwinter:block/frozen_bee_nest_top"
+  }
+}
