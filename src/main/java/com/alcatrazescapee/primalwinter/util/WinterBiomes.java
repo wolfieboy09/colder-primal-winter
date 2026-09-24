@@ -31,7 +31,7 @@ public final class WinterBiomes {
                 .flatMap(e -> e.getValue().generator().getBiomeSource().possibleBiomes().stream())
                 .flatMap(holder -> holder.unwrapKey().stream())
                 .collect(ImmutableSet.toImmutableSet());
-        PrimalWinter.LOGGER.info("Loaded winter biomes={}", winterBiomesView.size());
+        PrimalWinter.LOGGER.info("Loaded {} winter biomes", winterBiomesView.size());
     }
 
     /**
