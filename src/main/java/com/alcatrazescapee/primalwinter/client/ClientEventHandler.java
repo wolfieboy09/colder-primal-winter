@@ -6,18 +6,22 @@ import com.alcatrazescapee.primalwinter.config.ServerConfig;
 import net.minecraft.Util;
 import net.minecraft.client.Camera;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LightLayer;
 import net.minecraft.world.level.material.FogType;
+import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.ViewportEvent;
 import net.neoforged.neoforge.common.ModConfigSpec;
 
-@EventBusSubscriber(modid = PrimalWinter.MOD_ID)
+import static com.alcatrazescapee.primalwinter.registries.PrimalWinterBlocks.SNOWY_SUGAR_CANE;
+
+@EventBusSubscriber(modid = PrimalWinter.MOD_ID, value = Dist.CLIENT)
 public final class ClientEventHandler {
     private static final int DEFAULT_FOG_COLOR_DAY = 0xbfbfd8;
     private static final int DEFAULT_FOG_COLOR_NIGHT = 0x0c0c19;
