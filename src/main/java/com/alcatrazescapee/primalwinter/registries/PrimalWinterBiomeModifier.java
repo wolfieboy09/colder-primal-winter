@@ -7,12 +7,14 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderSet;
 import net.minecraft.data.worldgen.placement.MiscOverworldPlacements;
+import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import net.neoforged.neoforge.common.world.BiomeGenerationSettingsBuilder;
 import net.neoforged.neoforge.common.world.BiomeModifier;
 import net.neoforged.neoforge.common.world.ClimateSettingsBuilder;
+import net.neoforged.neoforge.common.world.MobSpawnSettingsBuilder;
 import net.neoforged.neoforge.common.world.ModifiableBiomeInfo;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.neoforged.neoforge.registries.NeoForgeRegistries;
@@ -57,7 +59,13 @@ public final class PrimalWinterBiomeModifier {
                 settings.addFeature(GenerationStep.Decoration.TOP_LAYER_MODIFICATION, feature);
             }
 
-            PrimalWinterFeatures.addSpawns(builder.getMobSpawnSettings()::addSpawn);
+            final MobSpawnSettingsBuilder spawnSettings = builder.getMobSpawnSettings();
+            for (MobCategory category : MobCategory.values()) {
+                // A frozen wasteland has no place for vanilla hostile mobs, passive animals, or village inhabitants -
+                // only the mobs added below should spawn here.
+                spawnSettings.getSpawner(category).clear();
+            }
+            PrimalWinterFeatures.addSpawns(spawnSettings::addSpawn);
         }
 
         @Override
