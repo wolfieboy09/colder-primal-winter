@@ -71,7 +71,8 @@ public final class BuiltinModels extends BlockStateProvider {
         simpleBlockWithItem(SNOWY_MANGROVE_ROOTS.get(), models()
                 .withExistingParent(name(SNOWY_MANGROVE_ROOTS), "block/mangrove_roots")
                 .texture("top", modLoc("block/snowy_mangrove_roots_top"))
-                .texture("side", modLoc("block/snowy_mangrove_roots_side")));
+                .texture("side", modLoc("block/snowy_mangrove_roots_side"))
+                .renderType("minecraft:cutout"));
         simpleBlockWithItem(SNOWY_MUDDY_MANGROVE_ROOTS.get(), models().cubeColumn(name(SNOWY_MUDDY_MANGROVE_ROOTS),
                 modLoc("block/snowy_muddy_mangrove_roots_side"),
                 modLoc("block/snowy_muddy_mangrove_roots_top")));
@@ -81,23 +82,25 @@ public final class BuiltinModels extends BlockStateProvider {
         simpleBlock(SNOWY_SUGAR_CANE.get(), models()
                 .withExistingParent(name(SNOWY_SUGAR_CANE), modLoc("block/overlay_tinted_cross"))
                 .texture("cross", modLoc("block/snowy_sugar_cane"))
-                .texture("overlay", modLoc("block/snowy_sugar_cane_overlay")));
+                .texture("overlay", modLoc("block/snowy_sugar_cane_overlay"))
+                .renderType("minecraft:cutout"));
         itemModels().basicItem(SNOWY_SUGAR_CANE.getId());
         simpleBlockWithItem(SNOWY_CACTUS.get(), models()
                 .withExistingParent(name(SNOWY_CACTUS), mcLoc("block/cactus"))
                 .texture("bottom", modLoc("block/snowy_cactus_bottom"))
                 .texture("top", modLoc("block/snowy_cactus_top"))
-                .texture("side", modLoc("block/snowy_cactus_side")));
+                .texture("side", modLoc("block/snowy_cactus_side"))
+                .renderType("minecraft:cutout"));
         bambooBlock(SNOWY_BAMBOO);
         lilyPadBlock(SNOWY_LILY_PAD);
         mushroomBlock(SNOWY_BROWN_MUSHROOM_BLOCK);
         mushroomBlock(SNOWY_RED_MUSHROOM_BLOCK);
         mushroomBlock(SNOWY_MUSHROOM_STEM);
         final ModelFile frozenBeehiveModel = models().orientableWithBottom(name(FROZEN_BEEHIVE),
-                modLoc("block/frozen_bee_nest_side"),
-                modLoc("block/frozen_bee_nest_front"),
-                modLoc("block/frozen_bee_nest_bottom"),
-                modLoc("block/frozen_bee_nest_top"))
+                        modLoc("block/frozen_bee_nest_side"),
+                        modLoc("block/frozen_bee_nest_front"),
+                        modLoc("block/frozen_bee_nest_bottom"),
+                        modLoc("block/frozen_bee_nest_top"))
                 .texture("particle", modLoc("block/frozen_bee_nest_side"));
         horizontalBlock(FROZEN_BEEHIVE.get(), frozenBeehiveModel);
         simpleBlockItem(FROZEN_BEEHIVE.get(), frozenBeehiveModel);
@@ -123,7 +126,8 @@ public final class BuiltinModels extends BlockStateProvider {
         simpleBlockWithItem(block.get(), models()
                 .withExistingParent(name(block), modLoc("block/snowy_leaves"))
                 .texture("all", mcLoc("block/" + nonSnowyName(block)))
-                .texture("overlay", modLoc("block/snowy_leaves_overlay")));
+                .texture("overlay", modLoc("block/snowy_leaves_overlay"))
+                .renderType("minecraft:cutout_mipped"));
     }
 
     void vineBlock(Supplier<Block> block) {
@@ -164,7 +168,8 @@ public final class BuiltinModels extends BlockStateProvider {
                 part.modelFile(models()
                         .withExistingParent("bamboo%d_age%d".formatted(i, age), mcLoc("block/bamboo%d_age%d".formatted(i, age)))
                         .texture("all", modLoc("block/snowy_bamboo_stalk"))
-                        .texture("particle", modLoc("block/snowy_bamboo_stalk")));
+                        .texture("particle", modLoc("block/snowy_bamboo_stalk"))
+                        .renderType("minecraft:cutout"));
                 if (i != 4) part = part.nextModel();
             }
             part.addModel().condition(BambooStalkBlock.AGE, age);
@@ -175,7 +180,8 @@ public final class BuiltinModels extends BlockStateProvider {
                     .modelFile(models()
                             .withExistingParent(leavesName, mcLoc("block/" + leavesName))
                             .texture("texture", modLoc("block/snowy_" + leavesName))
-                            .texture("particle", modLoc("block/snowy_" + leavesName)))
+                            .texture("particle", modLoc("block/snowy_" + leavesName))
+                            .renderType("minecraft:cutout"))
                     .addModel()
                     .condition(BambooStalkBlock.LEAVES, leaves);
         }
@@ -185,7 +191,8 @@ public final class BuiltinModels extends BlockStateProvider {
     void lilyPadBlock(DeferredBlock<Block> block) {
         final BlockModelBuilder model = models().withExistingParent(name(block), mcLoc("block/lily_pad"))
                 .texture("particle", modLoc("block/snowy_lily_pad"))
-                .texture("texture", modLoc("block/snowy_lily_pad"));
+                .texture("texture", modLoc("block/snowy_lily_pad"))
+                .renderType("minecraft:cutout");
         getVariantBuilder(block.get())
                 .partialState()
                 .modelForState()
@@ -195,12 +202,13 @@ public final class BuiltinModels extends BlockStateProvider {
                 .modelFile(model).rotationY(270).addModel();
         itemModels().getBuilder(block.getId().toString())
                 .parent(new ModelFile.UncheckedModelFile("item/generated"))
-                .texture("layer0", modLoc("block/snowy_lily_pad"));
+                .texture("layer0", modLoc("block/snowy_lily_pad"))
+                .renderType("minecraft:cutout");
     }
 
     void mushroomBlock(Supplier<Block> block) {
         final String name = name(block);
-        final ModelFile outside = models().singleTexture(name, mcLoc("block/template_single_face"), modLoc("block/" + name));
+        final ModelFile outside = models().singleTexture(name, mcLoc("block/template_single_face"), modLoc("block/" + name)).renderType("minecraft:cutout");
         final ModelFile inside = models().getExistingFile(mcLoc("block/mushroom_block_inside"));
         final MultiPartBlockStateBuilder builder = getMultipartBuilder(block.get());
 
@@ -225,7 +233,7 @@ public final class BuiltinModels extends BlockStateProvider {
                     .addModel()
                     .condition(part.property, false);
         }
-        simpleBlockItem(block.get(), models().cubeAll(name + "_inventory", modLoc("block/" + name)));
+        simpleBlockItem(block.get(), models().cubeAll(name + "_inventory", modLoc("block/" + name)).renderType("minecraft:cutout"));
     }
 
     void simpleBlockWithItem(Supplier<Block> block, ModelFile model, Function<ModelFile, ConfiguredModel[]> models) {
