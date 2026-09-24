@@ -25,6 +25,7 @@ public class PrimalWinterDataGen {
         event.getGenerator().addProvider(true, new BuiltinModels(event));
         event.getGenerator().addProvider(true, new BuiltinBlockTags(event));
         event.getGenerator().addProvider(true, new BuiltinEntityTags(event));
+        event.getGenerator().addProvider(true, new BuiltinDatamapProvider(event));
         event.getGenerator().addProvider(true,
                 (DataProvider.Factory<? extends DataProvider>) output -> new LootTableProvider(
                         output, Set.of(), List.of(

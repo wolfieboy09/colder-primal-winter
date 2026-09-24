@@ -8,8 +8,7 @@
     "ServerLevelMixin",
     "ServerLifecycleHooksMixin",
     "SurfaceSystemMixin",
-    "WorldGenRegionMixin",
-    "accessor.AxeItemAccessor"
+    "WorldGenRegionMixin"
   ],
   "client": [
     "client.DimensionSpecialEffectsMixin",

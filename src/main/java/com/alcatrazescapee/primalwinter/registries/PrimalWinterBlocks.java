@@ -3,7 +3,6 @@ package com.alcatrazescapee.primalwinter.registries;
 import com.alcatrazescapee.primalwinter.PrimalWinter;
 import com.alcatrazescapee.primalwinter.content.block.SnowyCactusBlock;
 import com.alcatrazescapee.primalwinter.content.block.FrozenBeehiveBlock;
-import com.alcatrazescapee.primalwinter.mixin.accessor.AxeItemAccessor;
 import com.alcatrazescapee.primalwinter.content.block.SnowyBambooBlock;
 import com.alcatrazescapee.primalwinter.content.block.SnowySugarCaneBlock;
 import com.alcatrazescapee.primalwinter.content.block.SnowyVineBlock;
@@ -143,23 +142,6 @@ public class PrimalWinterBlocks {
             .put(Blocks.MUSHROOM_STEM, SNOWY_MUSHROOM_STEM)
             .put(Blocks.BEE_NEST, FROZEN_BEEHIVE)
             .build();
-
-    public static final Map<Supplier<? extends Block>, Supplier<? extends Block>> SNOWY_LOG_STRIPPING_BLOCKS = new ImmutableMap.Builder<Supplier<? extends Block>, Supplier<? extends Block>>()
-            .put(SNOWY_OAK_LOG, () -> Blocks.OAK_LOG)
-            .put(SNOWY_BIRCH_LOG, () -> Blocks.BIRCH_LOG)
-            .put(SNOWY_SPRUCE_LOG, () -> Blocks.SPRUCE_LOG)
-            .put(SNOWY_JUNGLE_LOG, () -> Blocks.JUNGLE_LOG)
-            .put(SNOWY_DARK_OAK_LOG, () -> Blocks.DARK_OAK_LOG)
-            .put(SNOWY_ACACIA_LOG, () -> Blocks.ACACIA_LOG)
-            .put(SNOWY_CHERRY_LOG, () -> Blocks.CHERRY_LOG)
-            .put(SNOWY_MANGROVE_LOG, () -> Blocks.MANGROVE_LOG)
-            .build();
-
-    public static void registerAxeStrippables() {
-        final Map<Block, Block> strippables = new HashMap<>(AxeItemAccessor.getStrippables());
-        SNOWY_LOG_STRIPPING_BLOCKS.forEach((from, to) -> strippables.put(from.get(), to.get()));
-        AxeItemAccessor.setStrippables(strippables);
-    }
 
     private static <T extends Block> DeferredBlock<T> register(String name, Supplier<T> blockFactory) {
         final DeferredBlock<T> block = BLOCKS.register(name, blockFactory);
