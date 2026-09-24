@@ -1,0 +1,28 @@
+{
+  "values": {
+    "primalwinter:snowy_acacia_log": {
+      "stripped_block": "minecraft:acacia_log"
+    },
+    "primalwinter:snowy_birch_log": {
+      "stripped_block": "minecraft:birch_log"
+    },
+    "primalwinter:snowy_cherry_log": {
+      "stripped_block": "minecraft:cherry_log"
+    },
+    "primalwinter:snowy_dark_oak_log": {
+      "stripped_block": "minecraft:oak_log"
+    },
+    "primalwinter:snowy_jungle_log": {
+      "stripped_block": "minecraft:jungle_log"
+    },
+    "primalwinter:snowy_mangrove_log": {
+      "stripped_block": "minecraft:mangrove_log"
+    },
+    "primalwinter:snowy_oak_log": {
+      "stripped_block": "minecraft:oak_log"
+    },
+    "primalwinter:snowy_spruce_log": {
+      "stripped_block": "minecraft:spruce_log"
+    }
+  }
+}
