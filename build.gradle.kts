@@ -148,3 +148,7 @@ idea {
 tasks.withType<JavaCompile> {
     options.encoding = "UTF-8"
 }
+
+tasks.matching { it.name in setOf("sourcesJar", "javadocJar", "jar") }.configureEach {
+    dependsOn(generateModMetadata)
+}
