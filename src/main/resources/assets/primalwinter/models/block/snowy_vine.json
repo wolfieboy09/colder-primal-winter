@@ -1,5 +1,4 @@
 {
-  "__comment__": "This file was automatically created by mcresources",
   "render_type": "minecraft:cutout",
   "parent": "block/vine",
   "textures": {
