@@ -38,8 +38,6 @@ public class PrimalWinter {
         container.registerConfig(ModConfig.Type.COMMON, CommonConfig.SPEC);
         container.registerConfig(ModConfig.Type.SERVER, ServerConfig.SPEC);
 
-        container.registerExtensionPoint(IConfigScreenFactory.class, ConfigurationScreen::new);
-
         PrimalWinterBlocks.BLOCKS.register(bus);
         PrimalWinterBlocks.ITEMS.register(bus);
         PrimalWinterItemGroups.TABS.register(bus);
