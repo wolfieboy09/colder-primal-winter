@@ -9,7 +9,8 @@ version="${mod_version}"
 displayName="${mod_name}"
 authors="${mod_authors}"
 logoFile= "logo.png"
-
+updateJSONURL="https://raw.githubusercontent.com/wolfieboy09/colder-primal-winter/refs/heads/1.21.x/versions.json"
+displayURL="https://github.com/wolfieboy09/colder-primal-winter"
 description='''${mod_description}'''
 
 [[dependencies.primalwinter]]
