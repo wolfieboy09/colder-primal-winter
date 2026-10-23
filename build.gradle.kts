@@ -1,7 +1,7 @@
 plugins {
     id("java-library")
     id("idea")
-    id("net.neoforged.moddev") version "2.0.89"
+    id("net.neoforged.moddev") version "2.0.148"
 }
 
 val baseArchivesName = project.property("mod_id").toString()
