@@ -30,21 +30,21 @@ public class BuiltinPlacedFeatures {
         this.context = context;
         this.configuredFeatures = context.lookup(Registries.CONFIGURED_FEATURE);
 
-        register(FREEZE_TOP_LAYER, PrimalWinterFeatures.FREEZE_TOP_LAYER);
-        register(ICE_PATCH, PrimalWinterFeatures.ICE_PATCH,
+        register(FREEZE_TOP_LAYER, BuiltInPrimalWinterFeatures.FREEZE_TOP_LAYER);
+        register(ICE_PATCH, BuiltInPrimalWinterFeatures.ICE_PATCH,
                 spread(),
                 onHeightmap(Heightmap.Types.OCEAN_FLOOR),
                 biome());
-        register(ICE_SPIKES, PrimalWinterFeatures.ICE_SPIKES,
+        register(ICE_SPIKES, BuiltInPrimalWinterFeatures.ICE_SPIKES,
                 onAverageOnceEvery(8),
                 spread(),
                 onHeightmap(Heightmap.Types.OCEAN_FLOOR),
                 biome());
-        register(POWDER_SNOW_PATCH, PrimalWinterFeatures.POWDER_SNOW_PATCH,
+        register(POWDER_SNOW_PATCH, BuiltInPrimalWinterFeatures.POWDER_SNOW_PATCH,
                 spread(),
                 onHeightmap(Heightmap.Types.MOTION_BLOCKING),
                 biome());
-        register(SNOW_PATCH, PrimalWinterFeatures.SNOW_PATCH,
+        register(SNOW_PATCH, BuiltInPrimalWinterFeatures.SNOW_PATCH,
                 spread(),
                 onHeightmap(Heightmap.Types.OCEAN_FLOOR),
                 biome());

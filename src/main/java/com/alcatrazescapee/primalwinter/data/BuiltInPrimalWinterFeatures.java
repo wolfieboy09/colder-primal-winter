@@ -2,6 +2,7 @@ package com.alcatrazescapee.primalwinter.data;
 
 import com.alcatrazescapee.primalwinter.PrimalWinter;
 import com.alcatrazescapee.primalwinter.registries.PrimalWinterBlockTags;
+import com.alcatrazescapee.primalwinter.registries.PrimalWinterFeatures;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.ResourceKey;
@@ -18,7 +19,7 @@ import net.minecraft.world.level.levelgen.feature.stateproviders.RuleBasedBlockS
 
 import java.util.function.Supplier;
 
-public class PrimalWinterFeatures {
+public class BuiltInPrimalWinterFeatures {
     public static final ResourceKey<ConfiguredFeature<?, ?>> FREEZE_TOP_LAYER = key("freeze_top_layer");
     public static final ResourceKey<ConfiguredFeature<?, ?>> ICE_PATCH = key("ice_patch");
     public static final ResourceKey<ConfiguredFeature<?, ?>> ICE_SPIKES = key("ice_spikes");
@@ -31,14 +32,14 @@ public class PrimalWinterFeatures {
 
     final BootstrapContext<ConfiguredFeature<?, ?>> context;
 
-    public PrimalWinterFeatures(BootstrapContext<ConfiguredFeature<?, ?>> context) {
+    public BuiltInPrimalWinterFeatures(BootstrapContext<ConfiguredFeature<?, ?>> context) {
         this.context = context;
 
-        register(FREEZE_TOP_LAYER, com.alcatrazescapee.primalwinter.registries.PrimalWinterFeatures.FREEZE_TOP_LAYER, NoneFeatureConfiguration.NONE);
-        register(ICE_PATCH, com.alcatrazescapee.primalwinter.registries.PrimalWinterFeatures.DISK, disk(Blocks.ICE));
-        register(ICE_SPIKES, com.alcatrazescapee.primalwinter.registries.PrimalWinterFeatures.ICE_SPIKES, NoneFeatureConfiguration.NONE);
-        register(POWDER_SNOW_PATCH, com.alcatrazescapee.primalwinter.registries.PrimalWinterFeatures.DISK, disk(Blocks.POWDER_SNOW));
-        register(SNOW_PATCH, com.alcatrazescapee.primalwinter.registries.PrimalWinterFeatures.DISK, disk(Blocks.SNOW_BLOCK));
+        register(FREEZE_TOP_LAYER, PrimalWinterFeatures.FREEZE_TOP_LAYER, NoneFeatureConfiguration.NONE);
+        register(ICE_PATCH, PrimalWinterFeatures.DISK, disk(Blocks.ICE));
+        register(ICE_SPIKES, PrimalWinterFeatures.ICE_SPIKES, NoneFeatureConfiguration.NONE);
+        register(POWDER_SNOW_PATCH, PrimalWinterFeatures.DISK, disk(Blocks.POWDER_SNOW));
+        register(SNOW_PATCH, PrimalWinterFeatures.DISK, disk(Blocks.SNOW_BLOCK));
     }
 
     DiskConfiguration disk(Block block) {

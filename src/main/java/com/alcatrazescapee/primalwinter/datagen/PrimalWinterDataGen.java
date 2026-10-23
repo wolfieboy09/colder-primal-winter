@@ -3,7 +3,7 @@ package com.alcatrazescapee.primalwinter.datagen;
 import com.alcatrazescapee.primalwinter.PrimalWinter;
 import com.alcatrazescapee.primalwinter.data.BuiltinPlacedFeatures;
 import com.alcatrazescapee.primalwinter.data.BuiltinTemplatePools;
-import com.alcatrazescapee.primalwinter.data.PrimalWinterFeatures;
+import com.alcatrazescapee.primalwinter.data.BuiltInPrimalWinterFeatures;
 import com.alcatrazescapee.primalwinter.datagen.content.*;
 import net.minecraft.core.RegistrySetBuilder;
 import net.minecraft.core.registries.Registries;
@@ -36,7 +36,7 @@ public class PrimalWinterDataGen {
         event.getGenerator().addProvider(true,
                 (DataProvider.Factory<? extends DataProvider>) output -> new DatapackBuiltinEntriesProvider(
                         output, event.getLookupProvider(), new RegistrySetBuilder()
-                        .add(Registries.CONFIGURED_FEATURE, PrimalWinterFeatures::new)
+                        .add(Registries.CONFIGURED_FEATURE, BuiltInPrimalWinterFeatures::new)
                         .add(Registries.PLACED_FEATURE, BuiltinPlacedFeatures::new)
                         .add(NeoForgeRegistries.Keys.BIOME_MODIFIERS, NeoForgeBiomeModifiers::new)
                         .add(Registries.TEMPLATE_POOL, BuiltinTemplatePools::new),
