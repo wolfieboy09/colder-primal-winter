@@ -1,13 +1,12 @@
 package com.alcatrazescapee.primalwinter;
 
-import com.alcatrazescapee.primalwinter.client.ReloadableLevelRenderer;
+import com.alcatrazescapee.primalwinter.client.PrimalWinterClient;
 import com.alcatrazescapee.primalwinter.config.ClientConfig;
 import com.alcatrazescapee.primalwinter.config.CommonConfig;
 import com.alcatrazescapee.primalwinter.config.ServerConfig;
 import com.alcatrazescapee.primalwinter.registries.*;
 import com.alcatrazescapee.primalwinter.util.ConfigPacket;
 import com.mojang.logging.LogUtils;
-import net.minecraft.client.Minecraft;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.neoforged.bus.api.IEventBus;
@@ -19,8 +18,6 @@ import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.event.config.ModConfigEvent;
 import net.neoforged.fml.loading.FMLEnvironment;
-import net.neoforged.neoforge.client.gui.ConfigurationScreen;
-import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.neoforged.neoforge.network.PacketDistributor;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
@@ -65,7 +62,7 @@ public class PrimalWinter {
         registrar.playToClient(ConfigPacket.TYPE, ConfigPacket.CODEC, (packet, context) -> {
             ServerConfig.onClientSync(packet.winterDimensions());
             if (FMLEnvironment.dist.isClient()) {
-                ((ReloadableLevelRenderer) Minecraft.getInstance().levelRenderer).primalWinter$reload();
+                PrimalWinterClient.reloadRenderer();
             }
         });
     }
@@ -75,7 +72,7 @@ public class PrimalWinter {
         if (event.getConfig().getSpec() != ServerConfig.SPEC) return;
         ServerConfig.onReload();
         if (FMLEnvironment.dist.isClient()) {
-            ((ReloadableLevelRenderer) Minecraft.getInstance().levelRenderer).primalWinter$reload();
+            PrimalWinterClient.reloadRenderer();
         }
     }
 }
