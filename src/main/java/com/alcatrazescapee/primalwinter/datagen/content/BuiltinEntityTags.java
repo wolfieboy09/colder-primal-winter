@@ -1,6 +1,7 @@
 package com.alcatrazescapee.primalwinter.datagen.content;
 
 import com.alcatrazescapee.primalwinter.PrimalWinter;
+import com.alcatrazescapee.primalwinter.registries.PrimalWinterEntityTypeTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.tags.EntityTypeTagsProvider;
 import net.minecraft.tags.EntityTypeTags;
@@ -30,5 +31,8 @@ public final class BuiltinEntityTags extends EntityTypeTagsProvider {
                         EntityType.TRADER_LLAMA,
                         EntityType.SPIDER,
                         EntityType.CREEPER);
+
+        tag(PrimalWinterEntityTypeTags.SPAWNABLE)
+                .add(EntityType.POLAR_BEAR, EntityType.STRAY);
     }
 }

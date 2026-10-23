@@ -6,15 +6,20 @@ import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderSet;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.worldgen.placement.MiscOverworldPlacements;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.biome.MobSpawnSettings;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import net.neoforged.neoforge.common.world.*;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.neoforged.neoforge.registries.NeoForgeRegistries;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Supplier;
 
 public final class PrimalWinterBiomeModifier {
@@ -56,12 +61,41 @@ public final class PrimalWinterBiomeModifier {
             }
 
             final MobSpawnSettingsBuilder spawnSettings = builder.getMobSpawnSettings();
+
+            record SnapshotEntry(MobCategory category, MobSpawnSettings.SpawnerData data) {}
+            final List<SnapshotEntry> snapshot = new ArrayList<>();
             for (MobCategory category : MobCategory.values()) {
-                // A frozen wasteland has no place for vanilla hostile mobs, passive animals, or village inhabitants -
-                // only the mobs added below should spawn here.
+                for (MobSpawnSettings.SpawnerData data : spawnSettings.getSpawner(category)) {
+                    snapshot.add(new SnapshotEntry(category, data));
+                }
+            }
+
+            for (MobCategory category : MobCategory.values()) {
                 spawnSettings.getSpawner(category).clear();
             }
+
             PrimalWinterFeatures.addSpawns(spawnSettings::addSpawn);
+
+            for (SnapshotEntry entry : snapshot) {
+                final EntityType<?> type = entry.data().type;
+                if (type == EntityType.STRAY || type == EntityType.POLAR_BEAR) {
+                    continue;
+                }
+                final Holder<EntityType<?>> holder = BuiltInRegistries.ENTITY_TYPE.wrapAsHolder(type);
+                if (holder.is(PrimalWinterEntityTypeTags.SPAWNABLE)) {
+                    // Check if already present to avoid duplicates
+                    boolean exists = false;
+                    for (MobSpawnSettings.SpawnerData existing : spawnSettings.getSpawner(entry.category())) {
+                        if (existing.type == type) {
+                            exists = true;
+                            break;
+                        }
+                    }
+                    if (!exists) {
+                        spawnSettings.addSpawn(entry.category(), entry.data());
+                    }
+                }
+            }
         }
 
         @Override
