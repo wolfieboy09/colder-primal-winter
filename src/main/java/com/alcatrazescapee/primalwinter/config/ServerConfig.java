@@ -27,6 +27,11 @@ public final class ServerConfig {
     public static final ModConfigSpec.BooleanValue enableWeatherCommand;
     public static final ModConfigSpec.BooleanValue enableSnowAccumulationDuringWorldgen;
     public static final ModConfigSpec.BooleanValue enableSnowAccumulationDuringWeather;
+    public static final ModConfigSpec.BooleanValue enableWeatherDrySpells;
+    public static final ModConfigSpec.IntValue minSnowDays;
+    public static final ModConfigSpec.IntValue maxSnowDays;
+    public static final ModConfigSpec.IntValue minDryDays;
+    public static final ModConfigSpec.IntValue maxDryDays;
 
     static {
         enableWeatherCommand = BUILDER
@@ -49,6 +54,33 @@ public final class ServerConfig {
                 .comment("", "If true, snow will be layered higher than one layer during weather (snow).")
                 .translation(key("enableSnowAccumulationDuringWeather"))
                 .define("enableSnowAccumulationDuringWeather", true);
+
+        BUILDER.push("weather");
+        enableWeatherDrySpells = BUILDER
+                .comment(
+                        "",
+                        " If true, snowfall will cycle between snowy periods and dry periods in winter dimensions instead of staying stormy forever.",
+                        " When disabled, the default behavior (always snowing) is preserved."
+                )
+                .translation(key("enableWeatherDrySpells"))
+                .define("enableWeatherDrySpells", false);
+        minSnowDays = BUILDER
+                .comment("", " Minimum number of in-game days a snowy period lasts when weather dry spells are enabled.")
+                .translation(key("minSnowDays"))
+                .defineInRange("minSnowDays", 3, 1, 30);
+        maxSnowDays = BUILDER
+                .comment("", " Maximum number of in-game days a snowy period lasts when weather dry spells are enabled.")
+                .translation(key("maxSnowDays"))
+                .defineInRange("maxSnowDays", 7, 1, 30);
+        minDryDays = BUILDER
+                .comment("", " Minimum number of in-game days a dry period lasts when weather dry spells are enabled.")
+                .translation(key("minDryDays"))
+                .defineInRange("minDryDays", 1, 1, 14);
+        maxDryDays = BUILDER
+                .comment("", " Maximum number of in-game days a dry period lasts when weather dry spells are enabled.")
+                .translation(key("maxDryDays"))
+                .defineInRange("maxDryDays", 3, 1, 14);
+        BUILDER.pop();
 
         WINTER_DIMENSIONS = BUILDER
                 .comment(

@@ -46,6 +46,12 @@ public final class PrimalWinterUtil {
         if (ServerConfig.isWinterDimension(level.dimension()) &&
                ServerConfig.enableSnowAccumulationDuringWeather.getAsBoolean() &&
                 level.random.nextInt(16) == 0) {
+            if (ServerConfig.enableWeatherDrySpells.get()) {
+                WinterWeatherSavedData data = WinterWeatherSavedData.get(level);
+                if (data.getPhase() != WinterWeatherSavedData.Phase.SNOW) {
+                    return;
+                }
+            }
             final int blockX = chunk.getPos().getMinBlockX();
             final int blockZ = chunk.getPos().getMinBlockZ();
             final BlockPos pos = level.getHeightmapPos(Heightmap.Types.MOTION_BLOCKING, level.getBlockRandomPos(blockX, 0, blockZ, 15));
@@ -73,8 +79,17 @@ public final class PrimalWinterUtil {
         if (maybeLevel instanceof ServerLevel level && ServerConfig.isWinterDimension(level.dimension())) {
             NewWorldSavedData.onlyForNewWorlds(level, () -> {
                 PrimalWinter.LOGGER.info("Modifying weather for world {}", level.dimension().location());
-                level.setWeatherParameters(0, Integer.MAX_VALUE, true, true);  // Copied from WeatherCommand
-                level.getGameRules().getRule(GameRules.RULE_WEATHER_CYCLE).set(false, level.getServer());
+                if (ServerConfig.enableWeatherDrySpells.get()) {
+                    WinterWeatherSavedData data = WinterWeatherSavedData.get(level);
+                    data.setPhase(WinterWeatherSavedData.Phase.SNOW);
+                    data.initializeIfNeeded(level);
+                    data.randomizeNextSwitch(level);
+                    level.getGameRules().getRule(GameRules.RULE_WEATHER_CYCLE).set(true, level.getServer());
+                    level.setWeatherParameters(0, 24000 * Math.max(1, ServerConfig.minSnowDays.get()), true, true);
+                } else {
+                    level.setWeatherParameters(0, Integer.MAX_VALUE, true, true);  // Copied from WeatherCommand
+                    level.getGameRules().getRule(GameRules.RULE_WEATHER_CYCLE).set(false, level.getServer());
+                }
             });
         }
     }
